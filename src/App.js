@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import XpSplashScreen from './components/XpSplashScreen.jsx';
+import XpDesktop from './components/XpDesktop.jsx';
+import windowsLogo from './img/pngimg.com - windows_logos_PNG20.png';
 
 function App() {
+  const [currentView, setCurrentView] = useState('login'); // 'login' or 'desktop'
+
+  const handleLogin = () => {
+    setCurrentView('desktop');
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {currentView === 'login' ? (
+        <XpSplashScreen 
+          userName="Duarte Fernandes"
+          onLogin={handleLogin}
+          logoSrc={windowsLogo}
+        />
+      ) : (
+        <XpDesktop />
+      )}
     </div>
   );
 }

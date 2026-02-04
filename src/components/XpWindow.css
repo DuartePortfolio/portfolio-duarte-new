@@ -1,0 +1,96 @@
+.xp-window {
+  position: absolute;
+  min-width: 400px;
+  min-height: 300px;
+  background: white;
+  border: 2px solid;
+  border-color: #0054e3 #003c9d #003c9d #0054e3;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  cursor: default;
+}
+
+.xp-window.active {
+  border-color: #0054e3 #003c9d #003c9d #0054e3;
+}
+
+.xp-window:not(.active) .xp-window-title-bar {
+  background: linear-gradient(to bottom, #bfbfbf 0%, #8a8a8a 100%);
+}
+
+.xp-window-title-bar {
+  background: linear-gradient(to bottom, #0997ff 0%, #0053ee 50%, #0050ee 51%, #06f 100%);
+  padding: 3px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: move;
+  user-select: none;
+  height: 28px;
+}
+
+.xp-window-title {
+  color: white;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  flex: 1;
+  padding-left: 3px;
+}
+
+.xp-window-controls {
+  display: flex;
+  gap: 2px;
+}
+
+.xp-window-btn {
+  width: 21px;
+  height: 21px;
+  border: 1px solid;
+  border-color: #fff #000 #000 #fff;
+  background: linear-gradient(to bottom, #eff4fc 0%, #d8e9fd 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: Tahoma, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+  padding: 0;
+  line-height: 1;
+}
+
+.xp-window-btn:hover {
+  background: linear-gradient(to bottom, #ffeebb 0%, #ffcc88 100%);
+}
+
+.xp-window-btn:active {
+  border-color: #000 #fff #fff #000;
+  background: linear-gradient(to bottom, #d8e9fd 0%, #eff4fc 100%);
+}
+
+.xp-window-btn.close:hover {
+  background: linear-gradient(to bottom, #ff6b6b 0%, #ee4444 100%);
+  color: white;
+}
+
+.xp-window-btn.minimize span {
+  margin-top: -8px;
+  font-size: 20px;
+}
+
+.xp-window-btn.close span {
+  margin-top: -2px;
+}
+
+.xp-window-content {
+  flex: 1;
+  padding: 20px;
+  background: white;
+  overflow: auto;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 11px;
+}

@@ -1,0 +1,90 @@
+.crt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: black;
+}
+
+.crt-screen {
+  position: absolute;
+  inset: 0;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.crt-content {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+}
+
+/* Shutdown animation */
+.crt-screen.shutdown {
+  animation: crtShutdown 1s ease-out forwards;
+}
+
+@keyframes crtShutdown {
+  0% {
+    transform: scaleY(1) scaleX(1);
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    transform: scaleY(0.01) scaleX(1);
+    opacity: 1;
+    filter: brightness(2);
+  }
+  75% {
+    transform: scaleY(0.005) scaleX(0.02);
+    opacity: 1;
+    filter: brightness(3);
+  }
+  100% {
+    transform: scaleY(0) scaleX(0);
+    opacity: 0;
+    filter: brightness(5);
+    background: black;
+  }
+}
+
+/* Black screen phase */
+.crt-screen.black {
+  background: black;
+  opacity: 1;
+  transform: scaleY(0) scaleX(0);
+}
+
+/* Power-on animation */
+.crt-screen.poweron {
+  animation: crtPowerOn 1s ease-in forwards;
+}
+
+@keyframes crtPowerOn {
+  0% {
+    transform: scaleY(0) scaleX(0);
+    opacity: 0;
+    filter: brightness(5);
+    background: black;
+  }
+  25% {
+    transform: scaleY(0.005) scaleX(0.02);
+    opacity: 1;
+    filter: brightness(3);
+  }
+  50% {
+    transform: scaleY(0.01) scaleX(1);
+    opacity: 1;
+    filter: brightness(2);
+  }
+  100% {
+    transform: scaleY(1) scaleX(1);
+    opacity: 1;
+    filter: brightness(1);
+  }
+}

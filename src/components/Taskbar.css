@@ -1,0 +1,157 @@
+.xp-taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(to bottom, #245edb 0%, #3f8cf3 9%, #245edb 18%, #245edb 92%, #1941a5 100%);
+  border-top: 1px solid #0831d9;
+  display: flex;
+  align-items: stretch;
+  padding: 2px 0;
+  z-index: 1000;
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.xp-start-button {
+  background: linear-gradient(to bottom, #5eac56 0%, #3c873c 50%, #2e6b2e 51%, #448844 100%);
+  border: 1px solid;
+  border-color: #6bc466 #1e5a1e #1e5a1e #6bc466;
+  border-radius: 0 8px 8px 0;
+  padding: 0 18px 0 8px;
+  margin: 0 6px 0 2px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  font-family: Tahoma, sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.xp-start-button:hover {
+  background: linear-gradient(to bottom, #70c068 0%, #4a9d4a 50%, #3c7f3c 51%, #55a055 100%);
+}
+
+.xp-start-button:active,
+.xp-start-button.active {
+  border-color: #1e5a1e #6bc466 #6bc466 #1e5a1e;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(to bottom, #4a9d4a 0%, #3c7f3c 50%, #2e6b2e 51%, #448844 100%);
+}
+
+.start-icon {
+  font-size: 20px;
+  line-height: 1;
+  margin-top: -2px;
+}
+
+.start-text {
+  font-style: italic;
+  text-transform: lowercase;
+}
+
+.xp-taskbar-apps {
+  flex: 1;
+  display: flex;
+  gap: 3px;
+  padding: 0 4px;
+  overflow-x: auto;
+  align-items: center;
+}
+
+.xp-taskbar-app {
+  min-width: 160px;
+  max-width: 200px;
+  height: 24px;
+  background: linear-gradient(to bottom, #3f8cf3 0%, #2373e8 49%, #1e5fcf 50%, #1e5fcf 100%);
+  border: 1px solid;
+  border-color: #7bb5ff #0831d9 #0831d9 #7bb5ff;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-family: Tahoma, sans-serif;
+  font-size: 11px;
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.xp-taskbar-app:hover {
+  background: linear-gradient(to bottom, #5ca8ff 0%, #3f8cf3 49%, #2976e8 50%, #2976e8 100%);
+}
+
+.xp-taskbar-app.active {
+  background: linear-gradient(to bottom, #1941a5 0%, #0831d9 100%);
+  border-color: #0831d9 #7bb5ff #7bb5ff #0831d9;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.taskbar-app-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.taskbar-app-icon img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.taskbar-app-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.xp-system-tray {
+  background: linear-gradient(to bottom, #0c59d9 0%, #1378f0 10%, #1378f0 90%, #0c59d9 100%);
+  border-left: 2px solid #0d54c6;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 100px;
+}
+
+.tray-icons {
+  display: flex;
+  gap: 4px;
+}
+
+.tray-icon {
+  font-size: 14px;
+  opacity: 0.9;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tray-icon img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.xp-clock {
+  font-family: Tahoma, sans-serif;
+  font-size: 11px;
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  padding: 2px 4px;
+  border: 1px solid transparent;
+}
