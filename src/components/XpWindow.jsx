@@ -6,8 +6,10 @@ const XpWindow = ({
   children, 
   onClose, 
   onMinimize,
+  onMaximize,
   onFocus,
   isActive,
+  isMaximized = false,
   initialPosition = { x: 100, y: 100 },
   zIndex = 1
 }) => {
@@ -19,9 +21,13 @@ const XpWindow = ({
   const handleMouseMove = useCallback((e) => {
     if (!isDragging) return;
     
+    // Constrain window position to keep title bar visible
+    const newX = e.clientX - dragOffset.x;
+    const newY = Math.max(0, e.clientY - dragOffset.y); // Prevent dragging above viewport
+    
     setPosition({
-      x: e.clientX - dragOffset.x,
-      y: e.clientY - dragOffset.y
+      x: newX,
+      y: newY
     });
   }, [isDragging, dragOffset.x, dragOffset.y]);
 
@@ -59,8 +65,14 @@ const XpWindow = ({
   return (
     <div 
       ref={windowRef}
-      className={`xp-window ${isActive ? 'active' : ''}`}
-      style={{ 
+      className={`xp-window ${isActive ? 'active' : ''} ${isMaximized ? 'maximized' : ''}`}
+      style={isMaximized ? {
+        left: 0,
+        top: 0,
+        width: '100vw',
+        height: 'calc(100vh - 40px)', // Account for taskbar
+        zIndex: zIndex
+      } : { 
         left: `${position.x}px`, 
         top: `${position.y}px`,
         zIndex: zIndex
@@ -82,6 +94,17 @@ const XpWindow = ({
               }}
             >
               <span>_</span>
+            </button>
+          )}
+          {onMaximize && (
+            <button 
+              className="xp-window-btn maximize"
+              onClick={(e) => {
+                e.stopPropagation();
+                onMaximize();
+              }}
+            >
+              <span>{isMaximized ? '❐' : '□'}</span>
             </button>
           )}
           <button 

@@ -16,14 +16,14 @@ import documentIcon from '../img/Windows XP Icons/Generic Document.png';
 
 const XpDesktop = () => {
   const [apps, setApps] = useState([
-    { id: 'about', name: 'About Me', icon: userIcon, component: AboutMe, position: { x: 110, y: 40 }, isOpen: true, isMinimized: false, zIndex: 100 },
-    { id: 'projects', name: 'Projects', icon: briefcaseIcon, component: Projects, position: { x: 860, y: 40 }, isOpen: true, isMinimized: false, zIndex: 101, componentProps: {} },
-    { id: 'contact', name: 'Contact', icon: emailIcon, component: Contact, position: { x: 1425, y: 40 }, isOpen: true, isMinimized: false, zIndex: 102 },
-    { id: 'resume', name: 'Resume / CV', icon: documentIcon, component: Resume, position: { x: 250, y: 200 }, isOpen: false, isMinimized: false, zIndex: 100 },
+    { id: 'about', name: 'About Me', icon: userIcon, component: AboutMe, position: { x: 110, y: 40 }, isOpen: true, isMinimized: false, isMaximized: false, zIndex: 100 },
+    { id: 'projects', name: 'Projects', icon: briefcaseIcon, component: Projects, position: { x: 860, y: 40 }, isOpen: false, isMinimized: false, isMaximized: false, zIndex: 101, componentProps: {} },
+    { id: 'contact', name: 'Contact', icon: emailIcon, component: Contact, position: { x: 1425, y: 40 }, isOpen: false, isMinimized: false, isMaximized: false, zIndex: 102 },
+    { id: 'resume', name: 'Resume / CV', icon: documentIcon, component: Resume, position: { x: 250, y: 200 }, isOpen: false, isMinimized: false, isMaximized: false, zIndex: 100 },
   ]);
   
-  const [activeApp, setActiveApp] = useState('contact');
-  const [nextZIndex, setNextZIndex] = useState(103);
+  const [activeApp, setActiveApp] = useState('about');
+  const [nextZIndex, setNextZIndex] = useState(101);
   const [startMenuOpen, setStartMenuOpen] = useState(true);
   const [showShutdown, setShowShutdown] = useState(false);
   const [projectDetailWindows, setProjectDetailWindows] = useState([]);
@@ -76,6 +76,14 @@ const XpDesktop = () => {
     if (activeApp === appId) {
       setActiveApp(null);
     }
+  };
+
+  const maximizeApp = (appId) => {
+    setApps(apps.map(a => 
+      a.id === appId 
+        ? { ...a, isMaximized: !a.isMaximized }
+        : a
+    ));
   };
 
   const focusApp = (appId) => {
@@ -135,6 +143,7 @@ const XpDesktop = () => {
       componentProps: { project },
       position: { x: 300 + (projectDetailWindows.length * 30), y: 80 + (projectDetailWindows.length * 30) },
       isMinimized: false,
+      isMaximized: false,
       zIndex: nextZIndex
     };
 
@@ -157,6 +166,12 @@ const XpDesktop = () => {
     if (activeApp === windowId) {
       setActiveApp(null);
     }
+  };
+
+  const maximizeProjectWindow = (windowId) => {
+    setProjectDetailWindows(projectDetailWindows.map(w =>
+      w.id === windowId ? { ...w, isMaximized: !w.isMaximized } : w
+    ));
   };
 
   const focusProjectWindow = (windowId) => {
@@ -208,8 +223,10 @@ const XpDesktop = () => {
             title={app.name}
             onClose={() => closeApp(app.id)}
             onMinimize={() => minimizeApp(app.id)}
+            onMaximize={() => maximizeApp(app.id)}
             onFocus={() => focusApp(app.id)}
             isActive={activeApp === app.id}
+            isMaximized={app.isMaximized}
             initialPosition={app.position}
             zIndex={app.zIndex}
           >
@@ -228,8 +245,10 @@ const XpDesktop = () => {
             title={window.name}
             onClose={() => closeProjectWindow(window.id)}
             onMinimize={() => minimizeProjectWindow(window.id)}
+            onMaximize={() => maximizeProjectWindow(window.id)}
             onFocus={() => focusProjectWindow(window.id)}
             isActive={activeApp === window.id}
+            isMaximized={window.isMaximized}
             initialPosition={window.position}
             zIndex={window.zIndex}
           >

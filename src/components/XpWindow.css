@@ -2,6 +2,7 @@
   position: absolute;
   min-width: 400px;
   min-height: 300px;
+  max-height: calc(100vh - 80px);
   background: white;
   border: 2px solid;
   border-color: #0054e3 #003c9d #003c9d #0054e3;
@@ -9,6 +10,12 @@
   display: flex;
   flex-direction: column;
   cursor: default;
+}
+
+.xp-window.maximized {
+  max-height: calc(100vh - 40px);
+  min-width: 100vw;
+  border-radius: 0;
 }
 
 .xp-window.active {
@@ -80,6 +87,11 @@
 .xp-window-btn.minimize span {
   margin-top: -8px;
   font-size: 20px;
+}
+
+.xp-window-btn.maximize span {
+  margin-top: -2px;
+  font-size: 14px;
 }
 
 .xp-window-btn.close span {
