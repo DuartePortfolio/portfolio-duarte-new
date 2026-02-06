@@ -1,5 +1,14 @@
 import React from 'react';
 import pokestopImage from '../../img/pokestop.jpeg';
+// PokéStop images
+import landingPageImg from '../../img/pokestop/landingpage.jpeg';
+import microservicesArchImg from '../../img/pokestop/microservices-architecture.jpeg';
+import dockerArchImg from '../../img/pokestop/docker-architecture.jpeg';
+import serviceDepsImg from '../../img/pokestop/service-dependencies.jpeg';
+import catchFluxSeqImg from '../../img/pokestop/catch-flux-sequence.png';
+import catchFlux1Img from '../../img/pokestop/catchflux1.jpeg';
+import catchFlux2Img from '../../img/pokestop/catchflux2.jpeg';
+import catchFlux3Img from '../../img/pokestop/catchflux3.jpeg';
 
 const Projects = ({ onProjectClick }) => {
   const projects = [
@@ -10,7 +19,6 @@ const Projects = ({ onProjectClick }) => {
       tech: 'Node.js, Python/Flask, MySQL, MongoDB, Docker, NGINX',
       highlights: 'Microservices architecture, Multi-database system, Container orchestration',
       image: pokestopImage,
-      fullDescription: 'PokéStop is a microservices‑based online Pokémon trainer platform where users register as trainers, explore the Pokédex, encounter and catch Pokémon through a mini‑game, manage a personal collection, and build teams of up to six Pokémon. The goal of the project was to practice modern cloud‑native architecture end‑to‑end: API gateway patterns, independently deployable services, REST and GraphQL APIs, containerized infrastructure, and multi‑database persistence.',
       technologies: [
         'Node.js',
         'Express.js',
@@ -21,6 +29,7 @@ const Projects = ({ onProjectClick }) => {
         'MongoDB 7.0',
         'Docker',
         'Docker Compose',
+        'Docker Swarm',
         'NGINX',
         'JWT',
         'bcrypt',
@@ -32,7 +41,7 @@ const Projects = ({ onProjectClick }) => {
           title: 'Project Overview',
           content: `PokéStop is a microservices‑based online Pokémon trainer platform where users register as trainers, explore the Pokédex, encounter and catch Pokémon through a mini‑game, manage a personal collection, and build teams of up to six Pokémon. The goal of the project was to practice modern cloud‑native architecture end‑to‑end: API gateway patterns, independently deployable services, REST and GraphQL APIs, containerized infrastructure, and multi‑database persistence.`,
           images: [
-            { placeholder: true, caption: 'Landing page / main dashboard' }
+            { src: landingPageImg, caption: 'Landing page / main dashboard' }
           ]
         },
         {
@@ -53,7 +62,8 @@ Collection Service: Python/Flask service backed by MongoDB, storing each caught 
 
 Encounter Service: Node.js/Express service that models location‑based spawns, mini‑game scoring, and catch resolution before creating new collection entries.`,
           images: [
-            { placeholder: true, caption: 'High‑level microservices architecture diagram' }
+            { src: microservicesArchImg, caption: 'High‑level microservices architecture diagram' },
+            { src: serviceDepsImg, caption: 'Service dependencies and data flow' }
           ]
         },
         {
@@ -72,11 +82,9 @@ Team Builder: Uses GET /api/teams/user/:userId and POST /api/teams/user/:userId 
 
 Pokédex Browser: Fetches paginated or filtered lists from GET /api/pokedex and detailed information from GET /api/pokedex/:id.`,
           images: [
-            { placeholder: true, caption: 'Auth pages (register/login)' },
-            { placeholder: true, caption: 'Encounter mini‑game flow' },
-            { placeholder: true, caption: 'Collection page (PC Box)' },
-            { placeholder: true, caption: 'Pokédex grid + details modal' },
-            { placeholder: true, caption: 'Team builder' }
+            { src: catchFlux1Img, caption: 'CatchFlux encounter flow - Step 1' },
+            { src: catchFlux2Img, caption: 'CatchFlux encounter flow - Step 2' },
+            { src: catchFlux3Img, caption: 'CatchFlux encounter flow - Step 3' }
           ]
         },
         {
@@ -97,8 +105,7 @@ Collection: GET /api/collection/user/:userId, POST /api/collection to persist ne
 
 Pokédex: GET /api/pokedex, GET /api/pokedex/:id for species data used across the UI and backend logic.`,
           images: [
-            { placeholder: true, caption: 'Swagger UI for one or two services' },
-            { placeholder: true, caption: 'Sequence diagram – encounter and capture flow' }
+            { src: catchFluxSeqImg, caption: 'Sequence diagram – encounter and capture flow' }
           ]
         },
         {
@@ -115,57 +122,111 @@ Health & Monitoring: Dedicated /health endpoints and shell/PowerShell health‑c
 
 Security: The platform uses JWT authentication end‑to‑end, bcrypt password hashing, input validation on API boundaries, and network isolation for internal services on a private Docker network.`,
           images: [
-            { placeholder: true, caption: 'Deployment view (Docker / networks / databases)' },
-            { placeholder: true, caption: 'Example health check or Docker Compose stack running' }
+            { src: dockerArchImg, caption: 'Deployment view (Docker / networks / databases)' }
           ]
         }
       ],
       duration: '3 months',
       status: 'Completed',
       links: {
-        github: '#'
+        github: 'https://github.com/DuartePortfolio/PokeStop'
       }
     },
     {
       id: 'voltzy',
       title: 'Voltzy',
-      description: 'Energy management platform with real-time monitoring, analytics dashboard, and data visualization for tracking energy consumption patterns.',
-      tech: 'React, Node.js, Express, MongoDB, API Integration',
-      highlights: 'Real-time monitoring, Data analytics, Dashboard UI',
+      description: 'Cross-platform mobile energy management system with real-time smart home control, solar panel monitoring, and comprehensive analytics for sustainable energy consumption.',
+      tech: 'React Native, TypeScript, Expo, Node.js, MySQL',
+      highlights: 'Smart home automation, Solar integration, Mobile-first design',
       image: 'https://via.placeholder.com/400x200/34c759/ffffff?text=Voltzy',
-      fullDescription: 'Voltzy is a modern energy management platform designed to help users monitor and optimize their energy consumption. The application features real-time data monitoring, comprehensive analytics, and interactive visualizations to provide insights into energy usage patterns.',
-      features: [
-        'Real-time energy consumption monitoring',
-        'Interactive dashboard with customizable widgets',
-        'Historical data analysis and trend visualization',
-        'Energy usage alerts and notifications',
-        'Multi-device support and data synchronization',
-        'Export reports in multiple formats (PDF, CSV)'
+      technologies: [
+        'React Native',
+        'TypeScript',
+        'Expo SDK',
+        'Node.js',
+        'Express.js',
+        'MySQL 8.0',
+        'JWT',
+        'bcryptjs',
+        'React Navigation',
+        'react-native-svg',
+        'AsyncStorage',
+        'REST API'
       ],
-      technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Chart.js', 'Socket.io', 'REST API'],
-      responsibilities: [
-        'Developed full-stack application using MERN stack',
-        'Designed and implemented RESTful API endpoints',
-        'Created real-time data visualization dashboard',
-        'Implemented WebSocket connections for live updates',
-        'Designed MongoDB database schema for efficient data storage',
-        'Integrated third-party APIs for energy data collection'
-      ],
-      challenges: [
+      sections: [
         {
-          problem: 'Displaying large amounts of real-time data without performance degradation',
-          solution: 'Implemented data aggregation on the backend and optimized chart rendering with virtualization'
+          title: 'Project Overview',
+          content: `Voltzy is a comprehensive smart energy management mobile application that helps homeowners monitor and control their energy consumption in real-time. Built with React Native and Expo, Voltzy provides an intuitive interface for managing smart home lighting, tracking energy usage patterns, monitoring solar panel production, and automating routines to optimize energy efficiency.
+
+The application supports multi-house management, allowing users to manage multiple properties from a single account, switch seamlessly between different houses, and track energy consumption per property. With features ranging from individual light control to sophisticated energy analytics and automation routines, Voltzy provides a complete solution for modern energy management.`,
+          images: [
+            { placeholder: true, caption: 'Welcome screen and authentication flow' },
+            { placeholder: true, caption: 'Dashboard overview with energy statistics' }
+          ]
         },
         {
-          problem: 'Ensuring data consistency across multiple connected clients',
-          solution: 'Used Socket.io for real-time updates and implemented optimistic UI updates with rollback mechanisms'
+          title: 'Key Features & User Experience',
+          content: `Smart Lighting Control: Room-based organization allows users to organize lights by rooms (Living Room, Kitchen, Bedroom, etc.) with individual light control to toggle on/off, adjust brightness (0-100%), and change colors. The system provides real-time updates with instant synchronization across devices, energy monitoring to track power consumption per light and room, and detailed light statistics including wattage, status, and consumption.
+
+Comprehensive Energy Analytics: The dashboard provides current consumption (kWh), today's total consumption, energy saved tracking, number of active lights, and hourly consumption sparkline charts. The detailed analytics screen includes a 24-hour hourly consumption graph with total kWh, room consumption insights with progress bars showing consumption by room and active light counts, and real-time solar energy production vs consumption graphs.
+
+Advanced Visualization: Load and production curves display three-line graphs showing consumption curve (blue), production curve (yellow), and net energy flow (purple). A consumption heatmap provides a 7-day × 11-hour matrix showing usage patterns from 6 AM to 4 PM. Solar panel metrics include self-sufficiency percentage, panel efficiency percentage, and visual circular progress indicators.
+
+Smart Routines & Automation: Users can create custom routines to automate light control based on time of day, day of week schedules, and energy consumption triggers. The system provides routine management to view, edit, enable/disable, and delete routines, along with active routine tracking to see which routines are currently running.`,
+          images: [
+            { placeholder: true, caption: 'Room selection and smart lighting control interface' },
+            { placeholder: true, caption: 'Individual light detail with brightness and color controls' },
+            { placeholder: true, caption: 'Analytics dashboard with consumption graphs and solar production' }
+          ]
+        },
+        {
+          title: 'Architecture and Technologies',
+          content: `The application follows a modern mobile-first architecture with a React Native frontend and Node.js backend, communicating through a RESTful API with JWT authentication.
+
+Frontend Architecture: Built on React Native (v0.71.14) with TypeScript (v4.9.4) for type-safe development and Expo SDK (v48.0.0) for development and build tooling. React Navigation (v6) provides navigation with Stack Navigator for authentication flow and Bottom Tab Navigator for main app navigation. The UI leverages react-native-svg (v13.4.0) for dynamic charts and visualizations, expo-linear-gradient (v12.1.2) for gradient backgrounds, and AsyncStorage for local data persistence.
+
+Backend Architecture: Node.js with Express.js powers the RESTful API server, using MySQL (v8.0+) as the relational database with mysql2 client for promise support. Security is handled through JWT (jsonwebtoken) for authentication, bcryptjs for password hashing, and CORS for cross-origin resource sharing. Environment configuration is managed via dotenv.
+
+Component Organization: The frontend is organized into reusable components (AddRoomModal, AddRoutineModal), React Context providers for global state management (user, houses, auth), navigation configuration with BottomTabNavigator, comprehensive screens for all features (Welcome, Login, Dashboard, Consumption Analytics, Room Management, Light Control, Routines), and a service layer for API communication (energyService, housesService, lightsService, routinesService).`,
+          images: [
+            { placeholder: true, caption: 'Mobile app architecture diagram' },
+            { placeholder: true, caption: 'Navigation flow and screen structure' }
+          ]
+        },
+        {
+          title: 'Database Design',
+          content: `The application uses MySQL with a well-structured relational schema designed for scalability and data integrity.
+
+Core Tables: The users table stores user accounts with id, name, email, password_hash, and profile_picture_url. The houses table manages user properties including id, user_id, name, address, has_upac (solar panel integration), and upac_power_kw. The lights table contains smart light devices with id, house_id, room_name, name, brightness, color, is_on, and power_consumption_watts.
+
+Automation & Analytics: The routines table handles automation schedules with id, house_id, name, start_time, end_time, days_of_week, and is_active fields. The routine_lights table creates associations between routines and lights. Energy tracking tables include current_energy_stats for real-time metrics per house, hourly_consumption for 24-hour chart data, energy_measurements for detailed import/export tracking, and rooms for room definitions per house.
+
+API Endpoints: Authentication endpoints include POST /auth/signup for account creation and POST /auth/signin for login. House management provides GET/POST /api/houses for house operations and room management endpoints. Light control offers comprehensive CRUD operations for lights filtered by house and room. Energy endpoints deliver current stats, hourly consumption, room breakdowns, solar production data, load curves, consumption heatmaps, and solar metrics. Routine management provides full CRUD operations for automation schedules.`,
+          images: [
+            { placeholder: true, caption: 'Database schema and table relationships' }
+          ]
+        },
+        {
+          title: 'Development & Deployment',
+          content: `The project supports multiple testing and deployment scenarios with comprehensive configuration options for web, Android emulator, physical devices, and iOS platforms.
+
+Development Setup: Backend server runs on Node.js with Express, configured via environment variables for database connection (DB_HOST, DB_PORT, DB_USER, DB_PASS), server configuration (PORT), and JWT secrets. The database includes migration scripts (migrations.sql) and test data (test-data.sql, energy-data.sql) for quick setup with sample users, houses, lights, routines, and 24 hours of energy consumption data.
+
+Platform Support: Web testing uses Expo Web with hot-reloading at localhost:19006. Android testing supports both emulator (using http://10.0.2.2:3000) and physical devices (using local network IP). iOS testing works on macOS with Xcode and iOS Simulator. The application can be built as standalone APK using EAS CLI for distribution.
+
+API Configuration: The frontend API configuration (src/backend/config.ts) adapts BASE_URL for different platforms - localhost:3000 for web and iOS simulator, 10.0.2.2:3000 for Android emulator, and local network IP for physical devices. All API endpoints except authentication require JWT authentication via Bearer token in the Authorization header.
+
+Security Features: The system implements secure user registration with JWT-based authentication, password hashing with bcrypt, persistent login sessions, and profile management. The JWT tokens have a 7-day expiration and use environment-configured secrets for signing.`,
+          images: [
+            { placeholder: true, caption: 'Development environment setup and configuration' },
+            { placeholder: true, caption: 'Mobile app running on Android emulator' }
+          ]
         }
       ],
       duration: '4 months',
       status: 'Completed',
       links: {
-        github: '#',
-        live: '#'
+        github: 'https://github.com/DuartePortfolio/NewVoltzy'
       }
     },
     {
@@ -207,7 +268,7 @@ Security: The platform uses JWT authentication end‑to‑end, bcrypt password h
       duration: '3 months',
       status: 'Completed',
       links: {
-        github: '#'
+        github: 'https://github.com/DuartePortfolio/PokeStop'
       }
     }
   ];
