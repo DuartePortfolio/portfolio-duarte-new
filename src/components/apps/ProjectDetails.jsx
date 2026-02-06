@@ -25,13 +25,13 @@ const ImageGallery = ({ images }) => {
             </span>
           </div>
         ) : (
-          <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
             <img 
               src={img.src} 
               alt={img.caption}
               onClick={() => window.open(img.src, '_blank')}
               style={{ 
-                width: 'calc(100% - 16px)',
+                width: img.type === 'screenshot' ? '50%' : 'calc(100% - 16px)',
                 margin: '0 8px',
                 height: 'auto',
                 objectFit: 'contain',
@@ -118,19 +118,21 @@ const ImageGallery = ({ images }) => {
           </div>
         ) : (
           <>
-            <img 
-              src={currentImage.src} 
-              alt={currentImage.caption}
-              onClick={() => window.open(currentImage.src, '_blank')}
-              style={{ 
-                width: '100%', 
-                height: 'auto',
-                objectFit: 'contain',
-                border: '1px solid #ccc',
-                cursor: 'pointer'
-              }}
-              title="Click to view full size"
-            />
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <img 
+                src={currentImage.src} 
+                alt={currentImage.caption}
+                onClick={() => window.open(currentImage.src, '_blank')}
+                style={{ 
+                  width: currentImage.type === 'screenshot' ? '50%' : '100%',
+                  height: 'auto',
+                  objectFit: 'contain',
+                  border: '1px solid #ccc',
+                  cursor: 'pointer'
+                }}
+                title="Click to view full size"
+              />
+            </div>
             <div style={{
               position: 'absolute',
               top: '4px',

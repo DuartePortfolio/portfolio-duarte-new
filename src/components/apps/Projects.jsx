@@ -9,6 +9,18 @@ import catchFluxSeqImg from '../../img/pokestop/catch-flux-sequence.png';
 import catchFlux1Img from '../../img/pokestop/catchflux1.jpeg';
 import catchFlux2Img from '../../img/pokestop/catchflux2.jpeg';
 import catchFlux3Img from '../../img/pokestop/catchflux3.jpeg';
+// Voltzy images
+import voltzyImage from '../../img/voltzy/voltzy cover.jfif';
+import voltzyLoginImg from '../../img/voltzy/LoginScreen.jpeg';
+import voltzySigninImg from '../../img/voltzy/signinscreen.jpeg';
+import voltzyDashboardImg from '../../img/voltzy/dashboardscreen.jpeg';
+import voltzyChooseRoomImg from '../../img/voltzy/choosearoomscreen.jpeg';
+import voltzyRoomLightsImg from '../../img/voltzy/roomlightsscreen.jpeg';
+import voltzyLightDetailsImg from '../../img/voltzy/lightdetailsscreen.jpeg';
+import voltzyConsumption1Img from '../../img/voltzy/consumptionscreen1.jpeg';
+import voltzyConsumption2Img from '../../img/voltzy/consumptionscreen2.jpeg';
+import voltzyNavImg from '../../img/voltzy/smart_home_app_nav.png';
+import voltzyArchImg from '../../img/voltzy/smart_home_architecture.png';
 
 const Projects = ({ onProjectClick }) => {
   const projects = [
@@ -138,7 +150,7 @@ Security: The platform uses JWT authentication end‑to‑end, bcrypt password h
       description: 'Cross-platform mobile energy management system with real-time smart home control, solar panel monitoring, and comprehensive analytics for sustainable energy consumption.',
       tech: 'React Native, TypeScript, Expo, Node.js, MySQL',
       highlights: 'Smart home automation, Solar integration, Mobile-first design',
-      image: 'https://via.placeholder.com/400x200/34c759/ffffff?text=Voltzy',
+      image: voltzyImage,
       technologies: [
         'React Native',
         'TypeScript',
@@ -160,8 +172,8 @@ Security: The platform uses JWT authentication end‑to‑end, bcrypt password h
 
 The application supports multi-house management, allowing users to manage multiple properties from a single account, switch seamlessly between different houses, and track energy consumption per property. With features ranging from individual light control to sophisticated energy analytics and automation routines, Voltzy provides a complete solution for modern energy management.`,
           images: [
-            { placeholder: true, caption: 'Welcome screen and authentication flow' },
-            { placeholder: true, caption: 'Dashboard overview with energy statistics' }
+            { src: voltzyLoginImg, caption: 'Welcome screen and authentication flow', type: 'screenshot' },
+            { src: voltzyDashboardImg, caption: 'Dashboard overview with energy statistics', type: 'screenshot' }
           ]
         },
         {
@@ -174,9 +186,9 @@ Advanced Visualization: Load and production curves display three-line graphs sho
 
 Smart Routines & Automation: Users can create custom routines to automate light control based on time of day, day of week schedules, and energy consumption triggers. The system provides routine management to view, edit, enable/disable, and delete routines, along with active routine tracking to see which routines are currently running.`,
           images: [
-            { placeholder: true, caption: 'Room selection and smart lighting control interface' },
-            { placeholder: true, caption: 'Individual light detail with brightness and color controls' },
-            { placeholder: true, caption: 'Analytics dashboard with consumption graphs and solar production' }
+            { src: voltzyChooseRoomImg, caption: 'Room selection and smart lighting control interface', type: 'screenshot' },
+            { src: voltzyLightDetailsImg, caption: 'Individual light detail with brightness and color controls', type: 'screenshot' },
+            { src: voltzyConsumption1Img, caption: 'Analytics dashboard with consumption graphs and solar production', type: 'screenshot' }
           ]
         },
         {
@@ -189,8 +201,8 @@ Backend Architecture: Node.js with Express.js powers the RESTful API server, usi
 
 Component Organization: The frontend is organized into reusable components (AddRoomModal, AddRoutineModal), React Context providers for global state management (user, houses, auth), navigation configuration with BottomTabNavigator, comprehensive screens for all features (Welcome, Login, Dashboard, Consumption Analytics, Room Management, Light Control, Routines), and a service layer for API communication (energyService, housesService, lightsService, routinesService).`,
           images: [
-            { placeholder: true, caption: 'Mobile app architecture diagram' },
-            { placeholder: true, caption: 'Navigation flow and screen structure' }
+            { src: voltzyNavImg, caption: 'Navigation flow and screen structure', type: 'diagram' },
+            { src: voltzyArchImg, caption: 'Mobile app architecture diagram', type: 'diagram' }
           ]
         },
         {
@@ -203,7 +215,7 @@ Automation & Analytics: The routines table handles automation schedules with id,
 
 API Endpoints: Authentication endpoints include POST /auth/signup for account creation and POST /auth/signin for login. House management provides GET/POST /api/houses for house operations and room management endpoints. Light control offers comprehensive CRUD operations for lights filtered by house and room. Energy endpoints deliver current stats, hourly consumption, room breakdowns, solar production data, load curves, consumption heatmaps, and solar metrics. Routine management provides full CRUD operations for automation schedules.`,
           images: [
-            { placeholder: true, caption: 'Database schema and table relationships' }
+            { src: voltzyConsumption2Img, caption: 'Energy consumption analytics with detailed breakdowns', type: 'screenshot' }
           ]
         },
         {
@@ -218,8 +230,8 @@ API Configuration: The frontend API configuration (src/backend/config.ts) adapts
 
 Security Features: The system implements secure user registration with JWT-based authentication, password hashing with bcrypt, persistent login sessions, and profile management. The JWT tokens have a 7-day expiration and use environment-configured secrets for signing.`,
           images: [
-            { placeholder: true, caption: 'Development environment setup and configuration' },
-            { placeholder: true, caption: 'Mobile app running on Android emulator' }
+            { src: voltzyRoomLightsImg, caption: 'Room lights management screen', type: 'screenshot' },
+            { src: voltzySigninImg, caption: 'Sign in screen on mobile device', type: 'screenshot' }
           ]
         }
       ],
@@ -300,7 +312,7 @@ Security Features: The system implements secure user registration with JWT-based
               style={{ 
                 width: '70%', 
                 height: 'auto', 
-                maxHeight: '150px',
+                maxHeight: '200px',
                 objectFit: 'contain',
                 border: '1px solid #ccc'
               }}
