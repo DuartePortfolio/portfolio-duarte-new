@@ -1,0 +1,100 @@
+/* Responsive styles for app content */
+
+/* About Me photo responsiveness */
+@media (max-width: 767px) {
+  .about-me-photo {
+    width: 150px !important;
+    height: 150px !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* Project Details Responsiveness */
+@media (max-width: 1024px) {
+  div[style*="fontFamily: 'Tahoma, sans-serif'"] h2 {
+    font-size: 18px !important;
+  }
+
+  div[style*="fontFamily: 'Tahoma, sans-serif'"] h3 {
+    font-size: 14px !important;
+  }
+
+  div[style*="fontFamily: 'Tahoma, sans-serif'"] p,
+  div[style*="fontFamily: 'Tahoma, sans-serif'"] li {
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Make all images responsive */
+  .xp-window-content img {
+    max-width: 100% !important;
+    height: auto !important;
+    width: auto !important;
+  }
+
+  /* Adjust padding for mobile */
+  .xp-window-content {
+    padding: 12px !important;
+  }
+
+  /* Typography adjustments */
+  div[style*="fontFamily: 'Tahoma, sans-serif'"] h2 {
+    font-size: 20px !important;
+  }
+
+  div[style*="fontFamily: 'Tahoma, sans-serif'"] h3 {
+    font-size: 16px !important;
+  }
+
+  div[style*="fontFamily: 'Tahoma, sans-serif'"] p,
+  div[style*="fontFamily: 'Tahoma, sans-serif'"] li {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Technology tags */
+  div[style*="display: flex"][style*="flexWrap: wrap"] > span {
+    font-size: 12px !important;
+    padding: 6px 10px !important;
+  }
+
+  /* Table of contents */
+  section[style*="background: #f0f0f0"] {
+    padding: 10px !important;
+  }
+
+  /* Project cards in Projects list */
+  div[style*="cursor: pointer"][style*="border: 1px solid #ccc"] {
+    margin-bottom: 12px !important;
+    padding: 8px !important;
+  }
+
+  /* Project images */
+  div[style*="cursor: pointer"][style*="border: 1px solid #ccc"] img {
+    width: 100% !important;
+    max-height: 150px !important;
+  }
+
+  /* Make About Me layout stack on mobile */
+  div[style*="display: flex"][style*="gap: 30px"] {
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+}
+
+/* Contact form responsiveness */
+@media (max-width: 767px) {
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    padding: 10px !important;
+  }
+
+  button {
+    padding: 12px 20px !important;
+    font-size: 14px !important;
+    min-height: 44px !important; /* Touch-friendly */
+  }
+}

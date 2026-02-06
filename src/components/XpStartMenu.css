@@ -195,3 +195,38 @@
   font-weight: bold;
   font-size: 10px;
 }
+
+/* Tablet responsiveness */
+@media (max-width: 1024px) {
+  .xp-start-menu {
+    width: 320px;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 767px) {
+  .xp-start-menu {
+    width: 100vw;
+    height: calc(100vh - 48px);
+    left: 0;
+    bottom: 48px;
+    border-radius: 0;
+  }
+
+  .start-menu-item {
+    height: 56px;
+    padding: 12px 16px;
+    font-size: 16px;
+  }
+
+  .start-menu-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 28px;
+  }
+
+  .start-menu-icon img {
+    width: 36px;
+    height: 36px;
+  }
+}

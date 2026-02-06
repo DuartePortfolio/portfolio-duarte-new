@@ -1,53 +1,97 @@
-# Getting Started with Create React App
+# Duarte Fernandes - Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Windows XP-themed portfolio website showcasing my work as a full-stack developer. Built with React and featuring a fully responsive design that adapts to mobile and desktop experiences.
 
-## Available Scripts
+## 🌐 Live Demo
 
-In the project directory, you can run:
+[Visit Portfolio](https://your-portfolio-url.com) *(Update with your deployed URL)*
 
-### `npm start`
+## 👨‍💻 About
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This portfolio recreates the nostalgic Windows XP experience while presenting my professional work in software development. It features:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Desktop Experience**: Draggable windows, taskbar, start menu, and authentic XP styling
+- **Mobile Experience**: Custom mobile-optimized layout with app switcher interface
+- **Fully Responsive**: Adaptive design for all screen sizes
+- **Project Showcases**: Detailed views of major projects including PokéStop, Voltzy, and more
 
-### `npm test`
+## 🚀 Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React** - Frontend framework
+- **CSS3** - Styling with Windows XP theme
+- **React Hooks** - State management and responsive design
+- **Custom Components** - Modular architecture
 
-### `npm run build`
+## 📂 Projects Featured
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### PokéStop
+Microservices-based Pokémon trainer platform with Docker, Node.js, Python/Flask, MySQL, and MongoDB.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Voltzy
+Cross-platform mobile energy management app built with React Native, TypeScript, and Node.js.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Bus API
+RESTful API service for real-time bus tracking and route information.
 
-### `npm run eject`
+## 🛠️ Installation & Setup
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/portfolio-duarte-new.git
+cd portfolio-duarte-new
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Install dependencies:
+```bash
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Start the development server:
+```bash
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## Learn More
+## 📦 Build for Production
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm run build
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Builds the app for production to the `build` folder. The build is optimized and ready for deployment.
 
-### Code Splitting
+### SEO & Social Sharing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Update `public/index.html` with your actual portfolio URL (replace `https://your-portfolio-url.com/`)
+- Add an `og-image.png` (1200x630px recommended) to the `public/` folder for social media previews
+- Customize the favicon in `public/favicon.ico`
+
+## 📱 Features
+
+- ✅ Windows XP authentic design
+- ✅ Draggable and resizable windows
+- ✅ Working taskbar and start menu
+- ✅ Mobile-responsive layout
+- ✅ Touch support for mobile devices
+- ✅ Project detail pages with image galleries
+- ✅ Skills showcase with DevIcons
+- ✅ Contact information and social links
+- ✅ Downloadable CV/Resume
+
+## 📧 Contact
+
+- **Email**: duarte.ofernandes@gmail.com
+- **LinkedIn**: [Duarte Fernandes](https://www.linkedin.com/in/duartefernandes-/)
+- **GitHub**: [DuartePortfolio](https://github.com/DuartePortfolio)
+- **Location**: Porto, Portugal 📍
+
+## 📄 License
+
+This project is open source and available for personal use.
+
+---
+
 
 ### Analyzing the Bundle Size
 

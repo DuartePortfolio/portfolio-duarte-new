@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Duarte Portfolio",
+  "name": "Duarte Fernandes - Full-Stack Developer Portfolio",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,7 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#0053ee",
+  "background_color": "#5a98d7",
+  "description": "Full-stack developer portfolio showcasing projects in React, Node.js, microservices, and mobile development"
 }

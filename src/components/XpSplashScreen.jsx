@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './XpSplashScreen.css';
 import turnOffIcon from '../img/Windows_Turn_Off_22528.png';
 import CrtShutdownOverlay from './CrtShutdownOverlay';
+import { useResponsive } from '../hooks/useMediaQuery';
 
 const XpSplashScreen = ({ 
   userName = 'User', 
@@ -11,6 +12,7 @@ const XpSplashScreen = ({
 }) => {
   const [hovered, setHovered] = useState(false);
   const [showShutdown, setShowShutdown] = useState(false);
+  const { isMobile } = useResponsive();
 
   const defaultUserIcon = `
     <svg viewBox="0 0 48 48" fill="white">
@@ -53,7 +55,7 @@ const XpSplashScreen = ({
       <div className="xp-bottom">
         <div className="xp-power" onClick={handlePowerOff} style={{ cursor: 'pointer' }}>
           <img src={turnOffIcon} alt="Turn off" width="32" height="32" />
-          <span>Turn off computer</span>
+          <span>{isMobile ? 'Turn off mobile phone' : 'Turn off computer'}</span>
         </div>
         <div className="xp-help">
           After you log on, you can add or change accounts.<br />

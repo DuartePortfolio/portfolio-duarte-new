@@ -1,7 +1,7 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback, useEffect, memo } from 'react';
 import './XpWindow.css';
 
-const XpWindow = ({ 
+const XpWindow = memo(({ 
   title, 
   children, 
   onClose, 
@@ -23,9 +23,13 @@ const XpWindow = ({
   const handleMouseMove = useCallback((e) => {
     if (!isDragging) return;
     
+    // Support both mouse and touch events
+    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+    const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+    
     // Constrain window position to keep title bar visible
-    const newX = e.clientX - dragOffset.x;
-    const newY = Math.max(0, e.clientY - dragOffset.y); // Prevent dragging above viewport
+    const newX = clientX - dragOffset.x;
+    const newY = Math.max(0, clientY - dragOffset.y); // Prevent dragging above viewport
     
     setPosition({
       x: newX,
@@ -37,30 +41,40 @@ const XpWindow = ({
     setIsDragging(false);
   }, []);
 
-  const handleMouseDown = (e) => {
+  const handleMouseDown = useCallback((e) => {
     if (e.target.closest('.xp-window-controls')) return;
+    
+    // Support both mouse and touch events
+    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+    const clientY = e.clientY || (e.touches && e.touches[0].clientY);
     
     const rect = windowRef.current.getBoundingClientRect();
     setDragOffset({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
+      x: clientX - rect.left,
+      y: clientY - rect.top
     });
     setIsDragging(true);
     if (onFocus) onFocus();
-  };
+  }, [onFocus]);
 
   useEffect(() => {
     if (isDragging) {
       document.addEventListener('mousemove', handleMouseMove);
       document.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener('touchmove', handleMouseMove);
+      document.addEventListener('touchend', handleMouseUp);
     } else {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('touchmove', handleMouseMove);
+      document.removeEventListener('touchend', handleMouseUp);
     }
     
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('touchmove', handleMouseMove);
+      document.removeEventListener('touchend', handleMouseUp);
     };
   }, [isDragging, handleMouseMove, handleMouseUp]);
 
@@ -86,6 +100,7 @@ const XpWindow = ({
       <div 
         className="xp-window-title-bar"
         onMouseDown={handleMouseDown}
+        onTouchStart={handleMouseDown}
       >
         <span className="xp-window-title">{title}</span>
         <div className="xp-window-controls">
@@ -127,6 +142,8 @@ const XpWindow = ({
       </div>
     </div>
   );
-};
+});
+
+XpWindow.displayName = 'XpWindow';
 
 export default XpWindow;

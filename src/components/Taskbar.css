@@ -155,3 +155,72 @@
   padding: 2px 4px;
   border: 1px solid transparent;
 }
+
+/* Tablet responsiveness */
+@media (max-width: 1024px) {
+  .xp-taskbar {
+    height: 40px;
+  }
+
+  .xp-start-button {
+    padding: 0 14px 0 6px;
+    font-size: 12px;
+  }
+
+  .xp-taskbar-app {
+    min-width: 120px;
+    max-width: 160px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .xp-clock {
+    font-size: 12px;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 767px) {
+  .xp-taskbar {
+    height: 48px;
+    padding: 4px 0;
+  }
+
+  .xp-start-button {
+    padding: 0 12px 0 8px;
+    font-size: 14px;
+    border-radius: 0 12px 12px 0;
+  }
+
+  .start-icon {
+    font-size: 24px;
+  }
+
+  .xp-taskbar-apps {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .xp-taskbar-apps::-webkit-scrollbar {
+    display: none;
+  }
+
+  .xp-taskbar-app {
+    min-width: 100px;
+    max-width: 140px;
+    height: 40px;
+    font-size: 13px;
+  }
+
+  .taskbar-app-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+  }
+
+  .xp-clock {
+    font-size: 13px;
+    min-width: 70px;
+  }
+}

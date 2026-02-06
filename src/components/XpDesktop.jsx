@@ -13,14 +13,72 @@ import userIcon from '../img/Windows XP Icons/User Accounts.png';
 import briefcaseIcon from '../img/Windows XP Icons/Briefcase.png';
 import emailIcon from '../img/Windows XP Icons/Email.png';
 import documentIcon from '../img/Windows XP Icons/Generic Document.png';
+import windowPositionManager from '../utils/windowPositionManager';
 
 const XpDesktop = () => {
-  const [apps, setApps] = useState([
-    { id: 'about', name: 'About Me', icon: userIcon, component: AboutMe, position: { x: 1100, y: 40 }, isOpen: true, isMinimized: false, isMaximized: false, zIndex: 100, width: 750, height: 700 },
-    { id: 'projects', name: 'Projects', icon: briefcaseIcon, component: Projects, position: { x: 110, y: 40 }, isOpen: false, isMinimized: false, isMaximized: false, zIndex: 101, componentProps: {} },
-    { id: 'contact', name: 'Contact', icon: emailIcon, component: Contact, position: { x: 1425, y: 40 }, isOpen: false, isMinimized: false, isMaximized: false, zIndex: 102 },
-    { id: 'resume', name: 'Resume / CV', icon: documentIcon, component: Resume, position: { x: 250, y: 200 }, isOpen: false, isMinimized: false, isMaximized: false, zIndex: 100 },
-  ]);
+  // Get screen dimensions
+  const getScreenDimensions = () => ({
+    width: window.innerWidth,
+    height: window.innerHeight
+  });
+
+  const [screenSize, setScreenSize] = useState(getScreenDimensions());
+
+  // Initialize apps with responsive positions
+  const initializeApps = () => {
+    const { width, height } = screenSize;
+    return [
+      { 
+        id: 'about', 
+        name: 'About Me', 
+        icon: userIcon, 
+        component: AboutMe, 
+        position: windowPositionManager.getDefaultPosition('about', width, height), 
+        isOpen: true, 
+        isMinimized: false, 
+        isMaximized: false, 
+        zIndex: 100, 
+        width: 750, 
+        height: 700 
+      },
+      { 
+        id: 'projects', 
+        name: 'Projects', 
+        icon: briefcaseIcon, 
+        component: Projects, 
+        position: windowPositionManager.getDefaultPosition('projects', width, height), 
+        isOpen: false, 
+        isMinimized: false, 
+        isMaximized: false, 
+        zIndex: 101, 
+        componentProps: {} 
+      },
+      { 
+        id: 'contact', 
+        name: 'Contact', 
+        icon: emailIcon, 
+        component: Contact, 
+        position: windowPositionManager.getDefaultPosition('contact', width, height), 
+        isOpen: false, 
+        isMinimized: false, 
+        isMaximized: false, 
+        zIndex: 102 
+      },
+      { 
+        id: 'resume', 
+        name: 'Resume / CV', 
+        icon: documentIcon, 
+        component: Resume, 
+        position: windowPositionManager.getDefaultPosition('resume', width, height), 
+        isOpen: false, 
+        isMinimized: false, 
+        isMaximized: false, 
+        zIndex: 100 
+      },
+    ];
+  };
+
+  const [apps, setApps] = useState(initializeApps());
   
   const [activeApp, setActiveApp] = useState('about');
   const [nextZIndex, setNextZIndex] = useState(101);
@@ -119,6 +177,50 @@ const XpDesktop = () => {
     setShowShutdown(false);
   };
 
+  // Update window positions on screen resize
+  useEffect(() => {
+    const handleResize = () => {
+      const newSize = getScreenDimensions();
+      setScreenSize(newSize);
+      
+      setApps(prevApps => prevApps.map(app => {
+        if (!app.isOpen || app.isMaximized) return app;
+        
+        const newPosition = windowPositionManager.getDefaultPosition(
+          app.id, 
+          newSize.width, 
+          newSize.height
+        );
+        
+        return { ...app, position: newPosition };
+      }));
+
+      // Update project detail windows too
+      setProjectDetailWindows(prevWindows => prevWindows.map((window, index) => {
+        if (window.isMaximized) return window;
+        
+        const basePosition = windowPositionManager.getDefaultPosition(
+          'projectDetail', 
+          newSize.width, 
+          newSize.height
+        );
+        
+        const newPosition = windowPositionManager.getCascadedPosition(
+          basePosition.x,
+          basePosition.y,
+          index,
+          newSize.width,
+          newSize.height
+        );
+        
+        return { ...window, position: newPosition };
+      }));
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const handleProjectClick = (project) => {
     const windowId = `project-${project.id}`;
     
@@ -134,6 +236,21 @@ const XpDesktop = () => {
       return;
     }
 
+    // Calculate position using window position manager
+    const basePosition = windowPositionManager.getDefaultPosition(
+      'projectDetail', 
+      screenSize.width, 
+      screenSize.height
+    );
+    
+    const position = windowPositionManager.getCascadedPosition(
+      basePosition.x,
+      basePosition.y,
+      projectDetailWindows.length,
+      screenSize.width,
+      screenSize.height
+    );
+
     // Create new project detail window
     const newWindow = {
       id: windowId,
@@ -141,7 +258,7 @@ const XpDesktop = () => {
       icon: briefcaseIcon,
       component: ProjectDetails,
       componentProps: { project },
-      position: { x: 300 + (projectDetailWindows.length * 30), y: 80 + (projectDetailWindows.length * 30) },
+      position,
       isMinimized: false,
       isMaximized: false,
       zIndex: nextZIndex,

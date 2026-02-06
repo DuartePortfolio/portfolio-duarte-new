@@ -1,0 +1,72 @@
+.container {
+  font-family: Tahoma, sans-serif;
+  font-size: 12px;
+}
+
+.heading {
+  color: #0053ee;
+  margin-top: 0;
+}
+
+.projectCard {
+  margin-bottom: 16px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.projectCard:hover {
+  background: #e8eef7;
+}
+
+.imageContainer {
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.projectImage {
+  width: 70%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+  object-position: center center;
+  border: 1px solid #ccc;
+}
+
+.voltzyImage {
+  width: 45%;
+  max-height: 280px;
+  object-position: center top;
+}
+
+.projectTitle {
+  color: #0053ee;
+  margin: 0 0 8px 0;
+}
+
+.description {
+  margin: 0 0 8px 0;
+}
+
+.techInfo {
+  margin: 0 0 4px 0;
+  font-size: 11px;
+  color: #666;
+}
+
+.highlights {
+  margin: 0;
+  font-size: 11px;
+  color: #0053ee;
+}
+
+.viewDetails {
+  margin: 8px 0 0 0;
+  font-size: 11px;
+  font-style: italic;
+  color: #0053ee;
+}

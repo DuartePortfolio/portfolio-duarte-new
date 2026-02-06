@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 import pokestopImage from '../../img/pokestop.jpeg';
+import styles from './Projects.module.css';
 // PokéStop images
 import landingPageImg from '../../img/pokestop/landingpage.jpeg';
 import microservicesArchImg from '../../img/pokestop/microservices-architecture.jpeg';
@@ -14,16 +15,13 @@ import voltzyImage from '../../img/voltzy/voltzy cover.jfif';
 import voltzyLoginImg from '../../img/voltzy/LoginScreen.jpeg';
 import voltzySigninImg from '../../img/voltzy/signinscreen.jpeg';
 import voltzyDashboardImg from '../../img/voltzy/dashboardscreen.jpeg';
-import voltzyChooseRoomImg from '../../img/voltzy/choosearoomscreen.jpeg';
-import voltzyRoomLightsImg from '../../img/voltzy/roomlightsscreen.jpeg';
-import voltzyLightDetailsImg from '../../img/voltzy/lightdetailsscreen.jpeg';
 import voltzyConsumption1Img from '../../img/voltzy/consumptionscreen1.jpeg';
 import voltzyConsumption2Img from '../../img/voltzy/consumptionscreen2.jpeg';
 import voltzyNavImg from '../../img/voltzy/smart_home_app_nav.png';
 import voltzyArchImg from '../../img/voltzy/smart_home_architecture.png';
 
-const Projects = ({ onProjectClick }) => {
-  const projects = [
+const Projects = memo(({ onProjectClick }) => {
+  const projects = useMemo(() => [
     {
       id: 'pokestop',
       title: 'PokéStop',
@@ -172,6 +170,7 @@ Security: The platform uses JWT authentication end‑to‑end, bcrypt password h
 
 The application supports multi-house management, allowing users to manage multiple properties from a single account, switch seamlessly between different houses, and track energy consumption per property. With features ranging from individual light control to sophisticated energy analytics and automation routines, Voltzy provides a complete solution for modern energy management.`,
           images: [
+            { src: voltzySigninImg, caption: 'Sign in screen', type: 'screenshot' },
             { src: voltzyLoginImg, caption: 'Welcome screen and authentication flow', type: 'screenshot' },
             { src: voltzyDashboardImg, caption: 'Dashboard overview with energy statistics', type: 'screenshot' }
           ]
@@ -186,9 +185,8 @@ Advanced Visualization: Load and production curves display three-line graphs sho
 
 Smart Routines & Automation: Users can create custom routines to automate light control based on time of day, day of week schedules, and energy consumption triggers. The system provides routine management to view, edit, enable/disable, and delete routines, along with active routine tracking to see which routines are currently running.`,
           images: [
-            { src: voltzyChooseRoomImg, caption: 'Room selection and smart lighting control interface', type: 'screenshot' },
-            { src: voltzyLightDetailsImg, caption: 'Individual light detail with brightness and color controls', type: 'screenshot' },
-            { src: voltzyConsumption1Img, caption: 'Analytics dashboard with consumption graphs and solar production', type: 'screenshot' }
+            { src: voltzyConsumption1Img, caption: 'Analytics dashboard with consumption graphs and solar production', type: 'screenshot' },
+            { src: voltzyConsumption2Img, caption: 'Energy consumption analytics with detailed breakdowns', type: 'screenshot' }
           ]
         },
         {
@@ -213,10 +211,7 @@ Core Tables: The users table stores user accounts with id, name, email, password
 
 Automation & Analytics: The routines table handles automation schedules with id, house_id, name, start_time, end_time, days_of_week, and is_active fields. The routine_lights table creates associations between routines and lights. Energy tracking tables include current_energy_stats for real-time metrics per house, hourly_consumption for 24-hour chart data, energy_measurements for detailed import/export tracking, and rooms for room definitions per house.
 
-API Endpoints: Authentication endpoints include POST /auth/signup for account creation and POST /auth/signin for login. House management provides GET/POST /api/houses for house operations and room management endpoints. Light control offers comprehensive CRUD operations for lights filtered by house and room. Energy endpoints deliver current stats, hourly consumption, room breakdowns, solar production data, load curves, consumption heatmaps, and solar metrics. Routine management provides full CRUD operations for automation schedules.`,
-          images: [
-            { src: voltzyConsumption2Img, caption: 'Energy consumption analytics with detailed breakdowns', type: 'screenshot' }
-          ]
+API Endpoints: Authentication endpoints include POST /auth/signup for account creation and POST /auth/signin for login. House management provides GET/POST /api/houses for house operations and room management endpoints. Light control offers comprehensive CRUD operations for lights filtered by house and room. Energy endpoints deliver current stats, hourly consumption, room breakdowns, solar production data, load curves, consumption heatmaps, and solar metrics. Routine management provides full CRUD operations for automation schedules.`
         },
         {
           title: 'Development & Deployment',
@@ -228,11 +223,7 @@ Platform Support: Web testing uses Expo Web with hot-reloading at localhost:1900
 
 API Configuration: The frontend API configuration (src/backend/config.ts) adapts BASE_URL for different platforms - localhost:3000 for web and iOS simulator, 10.0.2.2:3000 for Android emulator, and local network IP for physical devices. All API endpoints except authentication require JWT authentication via Bearer token in the Authorization header.
 
-Security Features: The system implements secure user registration with JWT-based authentication, password hashing with bcrypt, persistent login sessions, and profile management. The JWT tokens have a 7-day expiration and use environment-configured secrets for signing.`,
-          images: [
-            { src: voltzyRoomLightsImg, caption: 'Room lights management screen', type: 'screenshot' },
-            { src: voltzySigninImg, caption: 'Sign in screen on mobile device', type: 'screenshot' }
-          ]
+Security Features: The system implements secure user registration with JWT-based authentication, password hashing with bcrypt, persistent login sessions, and profile management. The JWT tokens have a 7-day expiration and use environment-configured secrets for signing.`
         }
       ],
       duration: '4 months',
@@ -283,56 +274,43 @@ Security Features: The system implements secure user registration with JWT-based
         github: 'https://github.com/DuartePortfolio/PokeStop'
       }
     }
-  ];
+  ], []);
 
   return (
-    <div style={{ fontFamily: 'Tahoma, sans-serif', fontSize: '12px' }}>
-      <h2 style={{ color: '#0053ee', marginTop: 0 }}>My Projects</h2>
+    <div className={styles.container}>
+      <h2 className={styles.heading}>My Projects</h2>
       <p>Click on any project to view detailed information:</p>
       
       {projects.map((project, index) => (
         <div 
           key={index} 
           onClick={() => onProjectClick && onProjectClick(project)}
-          style={{ 
-            marginBottom: '16px', 
-            padding: '10px', 
-            border: '1px solid #ccc',
-            background: '#f9f9f9',
-            cursor: 'pointer',
-            transition: 'background 0.2s'
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.background = '#e8eef7'}
-          onMouseLeave={(e) => e.currentTarget.style.background = '#f9f9f9'}
+          className={styles.projectCard}
         >
-          <div style={{ background: '#fff', padding: '10px', marginBottom: '8px', textAlign: 'center' }}>
+          <div className={styles.imageContainer}>
             <img 
               src={project.image} 
               alt={project.title}
-              style={{ 
-                width: '70%', 
-                height: 'auto', 
-                maxHeight: '200px',
-                objectFit: 'contain',
-                border: '1px solid #ccc'
-              }}
+              className={project.id === 'voltzy' ? styles.voltzyImage : styles.projectImage}
             />
           </div>
-          <h3 style={{ color: '#0053ee', margin: '0 0 8px 0' }}>{project.title}</h3>
-          <p style={{ margin: '0 0 8px 0' }}>{project.description}</p>
-          <p style={{ margin: '0 0 4px 0', fontSize: '11px', color: '#666' }}>
+          <h3 className={styles.projectTitle}>{project.title}</h3>
+          <p className={styles.description}>{project.description}</p>
+          <p className={styles.techInfo}>
             <strong>Technologies:</strong> {project.tech}
           </p>
-          <p style={{ margin: 0, fontSize: '11px', color: '#0053ee' }}>
+          <p className={styles.highlights}>
             <strong>Key Features:</strong> {project.highlights}
           </p>
-          <p style={{ margin: '8px 0 0 0', fontSize: '11px', fontStyle: 'italic', color: '#0053ee' }}>
+          <p className={styles.viewDetails}>
             Click to view details →
           </p>
         </div>
       ))}
     </div>
   );
-};
+});
+
+Projects.displayName = 'Projects';
 
 export default Projects;

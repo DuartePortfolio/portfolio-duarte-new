@@ -1,0 +1,195 @@
+.mobile-layout {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, #5a98d7 0%, #3978c5 50%, #5a98d7 100%);
+  background-image: 
+    radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.1) 100%),
+    linear-gradient(to bottom, #5a98d7 0%, #3978c5 50%, #5a98d7 100%);
+  overflow: hidden;
+}
+
+.mobile-app-header {
+  background: linear-gradient(to bottom, #0997ff 0%, #0053ee 100%);
+  color: white;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  min-height: 56px;
+}
+
+.mobile-back-btn,
+.mobile-home-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-family: Tahoma, sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.mobile-back-btn:active,
+.mobile-home-btn:active {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.mobile-app-title {
+  font-family: Tahoma, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+  flex: 1;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-content {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: white;
+  padding: 16px;
+}
+
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 8px;
+}
+
+.mobile-header {
+  text-align: center;
+  padding: 20px 0;
+  color: #333;
+}
+
+.mobile-header h1 {
+  font-family: Tahoma, sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+  color: #0053ee;
+}
+
+.mobile-subtitle {
+  font-family: Tahoma, sans-serif;
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+
+.mobile-app-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 0 8px;
+}
+
+.mobile-app-card {
+  background: white;
+  border: 2px solid #0053ee;
+  border-radius: 12px;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+}
+
+.mobile-app-card:active {
+  transform: scale(0.95);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.mobile-app-icon {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.mobile-app-name {
+  font-family: Tahoma, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+.mobile-nav {
+  background: linear-gradient(to bottom, #245edb 0%, #1941a5 100%);
+  border-top: 1px solid #0831d9;
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 16px;
+  cursor: pointer;
+}
+
+.mobile-nav-icon {
+  font-size: 24px;
+}
+
+.mobile-nav-label {
+  font-family: Tahoma, sans-serif;
+  font-size: 10px;
+  color: white;
+  font-weight: 600;
+}
+
+/* Make app content mobile-friendly */
+.mobile-content h2 {
+  font-size: 20px;
+  margin-top: 0;
+}
+
+.mobile-content h3 {
+  font-size: 16px;
+}
+
+.mobile-content p,
+.mobile-content li {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Responsive images in mobile content */
+.mobile-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 480px) {
+  .mobile-app-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-app-card {
+    padding: 20px 16px;
+  }
+
+  .mobile-header h1 {
+    font-size: 28px;
+  }
+}

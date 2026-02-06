@@ -67,3 +67,38 @@
   word-wrap: break-word;
   max-width: 70px;
 }
+
+/* Tablet responsiveness */
+@media (max-width: 1024px) {
+  .xp-desktop-icons {
+    gap: 12px;
+  }
+
+  .xp-desktop-icon {
+    width: 80px;
+    padding: 6px;
+  }
+
+  .icon-image {
+    width: 56px;
+    height: 56px;
+    font-size: 36px;
+  }
+
+  .icon-image img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .icon-label {
+    font-size: 12px;
+    max-width: 80px;
+  }
+}
+
+/* Hide desktop icons on mobile - mobile layout will be used */
+@media (max-width: 767px) {
+  .xp-desktop-icons {
+    display: none;
+  }
+}

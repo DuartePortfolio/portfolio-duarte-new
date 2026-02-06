@@ -1,180 +1,107 @@
-import React from 'react';
+import React, { memo } from 'react';
 import profilePhoto from '../../img/meme.jfif';
+import styles from './AboutMe.module.css';
 
-const AboutMe = () => {
+const AboutMe = memo(() => {
   return (
-    <div style={{ 
-      fontFamily: 'Tahoma, sans-serif', 
-      fontSize: '12px',
-      display: 'flex',
-      gap: '30px'
-    }}>
-      <div style={{ flex: 1 }}>
-        <h2 style={{ color: '#0053ee', marginTop: 0, marginBottom: '16px' }}>About Me</h2>
+    <div className={styles.container}>
+      <div className={styles.mainContent}>
+        <h2 className={styles.heading}>About Me</h2>
         <p>
-          Hello! I'm Duarte Fernandes, a <strong>full-stack</strong> developer from <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>📍 <strong>Porto, Portugal</strong></span>, focused on back-end systems.
+          Hello! I'm Duarte Fernandes, a <strong>full-stack</strong> developer from <span className={styles.locationBadge}>📍 <strong>Porto, Portugal</strong></span>, focused on back-end systems.
         </p>
         <p>
           I am fluent in English and Portuguese.
         </p>
         
-        <h3 style={{ color: '#0053ee', marginTop: '28px', marginBottom: '16px' }}>Skills</h3>
+        <h3 className={styles.subheading}>Skills</h3>
         
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
-          <div style={{ 
-            minWidth: '105px', 
-            fontWeight: '600',
-            color: '#000'
-          }}>
-            Backend
-          </div>
-          <div style={{ 
-            width: '2px', 
-            minHeight: '40px', 
-            background: '#ccc',
-            alignSelf: 'stretch'
-          }}></div>
-          <div style={{ 
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(110px, 1fr))',
-            gap: '12px',
-            flex: 1
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
-              <i className="devicon-java-plain colored" style={{ fontSize: '22px', width: '22px', height: '22px', flexShrink: 0 }}></i>
-              <span style={{ fontWeight: '500' }}>Java</span>
+        <div className={styles.skillRow}>
+          <div className={styles.skillCategory}>Backend</div>
+          <div className={styles.divider}></div>
+          <div className={styles.skillGrid}>
+            <div className={styles.skillItem}>
+              <i className={`devicon-java-plain colored ${styles.skillIcon}`}></i>
+              <span className={styles.skillName}>Java</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
-              <i className="devicon-spring-plain colored" style={{ fontSize: '22px', width: '22px', height: '22px', flexShrink: 0 }}></i>
-              <span style={{ fontWeight: '500' }}>Spring Boot</span>
+            <div className={styles.skillItem}>
+              <i className={`devicon-spring-plain colored ${styles.skillIcon}`}></i>
+              <span className={styles.skillName}>Spring Boot</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
-              <i className="devicon-nodejs-plain colored" style={{ fontSize: '22px', width: '22px', height: '22px', flexShrink: 0 }}></i>
+            <div className={styles.skillItem}>
+              <i className={`devicon-nodejs-plain colored ${styles.skillIcon}`}></i>
               <span>Node.js</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
-              <i className="devicon-express-original" style={{ fontSize: '22px', width: '22px', height: '22px', flexShrink: 0 }}></i>
+            <div className={styles.skillItem}>
+              <i className={`devicon-express-original ${styles.skillIcon}`}></i>
               <span>Express</span>
             </div>
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
-          <div style={{ 
-            minWidth: '105px', 
-            fontWeight: '600',
-            color: '#000'
-          }}>
-            Databases
-          </div>
-          <div style={{ 
-            width: '2px', 
-            minHeight: '40px', 
-            background: '#ccc',
-            alignSelf: 'stretch'
-          }}></div>
-          <div style={{ 
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(110px, 1fr))',
-            gap: '12px',
-            flex: 1
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
-              <i className="devicon-mysql-plain colored" style={{ fontSize: '22px', width: '22px', height: '22px', flexShrink: 0 }}></i>
+        <div className={styles.skillRow}>
+          <div className={styles.skillCategory}>Databases</div>
+          <div className={styles.divider}></div>
+          <div className={styles.skillGrid}>
+            <div className={styles.skillItem}>
+              <i className={`devicon-mysql-plain colored ${styles.skillIcon}`}></i>
               <span>MySQL</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
-              <i className="devicon-mongodb-plain colored" style={{ fontSize: '22px', width: '22px', height: '22px', flexShrink: 0 }}></i>
+            <div className={styles.skillItem}>
+              <i className={`devicon-mongodb-plain colored ${styles.skillIcon}`}></i>
               <span>MongoDB</span>
             </div>
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
-          <div style={{ 
-            minWidth: '105px', 
-            fontWeight: '600',
-            color: '#000'
-          }}>
-            Frontend
-          </div>
-          <div style={{ 
-            width: '2px', 
-            minHeight: '40px', 
-            background: '#ccc',
-            alignSelf: 'stretch'
-          }}></div>
-          <div style={{ 
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(110px, 1fr))',
-            gap: '12px',
-            flex: 1
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '7px', opacity: 0.85 }}>
-              <i className="devicon-javascript-plain colored" style={{ fontSize: '22px', width: '22px', height: '22px', flexShrink: 0 }}></i>
+        <div className={styles.skillRow}>
+          <div className={styles.skillCategory}>Frontend</div>
+          <div className={styles.divider}></div>
+          <div className={styles.skillGrid}>
+            <div className={styles.skillItemFaded}>
+              <i className={`devicon-javascript-plain colored ${styles.skillIcon}`}></i>
               <span>JavaScript</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '7px', opacity: 0.85 }}>
-              <i className="devicon-react-original colored" style={{ fontSize: '22px', width: '22px', height: '22px', flexShrink: 0 }}></i>
+            <div className={styles.skillItemFaded}>
+              <i className={`devicon-react-original colored ${styles.skillIcon}`}></i>
               <span>React</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '7px', opacity: 0.85 }}>
-              <i className="devicon-vuejs-plain colored" style={{ fontSize: '22px', width: '22px', height: '22px', flexShrink: 0 }}></i>
+            <div className={styles.skillItemFaded}>
+              <i className={`devicon-vuejs-plain colored ${styles.skillIcon}`}></i>
               <span>Vue</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '7px', opacity: 0.85 }}>
-              <i className="devicon-html5-plain colored" style={{ fontSize: '22px', width: '22px', height: '22px', flexShrink: 0 }}></i>
+            <div className={styles.skillItemFaded}>
+              <i className={`devicon-html5-plain colored ${styles.skillIcon}`}></i>
               <span>HTML</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '7px', opacity: 0.85 }}>
-              <i className="devicon-css3-plain colored" style={{ fontSize: '22px', width: '22px', height: '22px', flexShrink: 0 }}></i>
+            <div className={styles.skillItemFaded}>
+              <i className={`devicon-css3-plain colored ${styles.skillIcon}`}></i>
               <span>CSS</span>
             </div>
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
-          <div style={{ 
-            minWidth: '105px', 
-            fontWeight: '600',
-            color: '#000'
-          }}>
-            Tools
-          </div>
-          <div style={{ 
-            width: '2px', 
-            minHeight: '40px', 
-            background: '#ccc',
-            alignSelf: 'stretch'
-          }}></div>
-          <div style={{ 
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(110px, 1fr))',
-            gap: '12px',
-            flex: 1
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
-              <i className="devicon-git-plain colored" style={{ fontSize: '22px', width: '22px', height: '22px', flexShrink: 0 }}></i>
+        <div className={styles.skillRow}>
+          <div className={styles.skillCategory}>Tools</div>
+          <div className={styles.divider}></div>
+          <div className={styles.skillGrid}>
+            <div className={styles.skillItem}>
+              <i className={`devicon-git-plain colored ${styles.skillIcon}`}></i>
               <span>Git</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
-              <i className="devicon-github-original" style={{ fontSize: '22px', width: '22px', height: '22px', flexShrink: 0 }}></i>
+            <div className={styles.skillItem}>
+              <i className={`devicon-github-original ${styles.skillIcon}`}></i>
               <span>GitHub</span>
             </div>
           </div>
         </div>
         
-        <h3 style={{ color: '#0053ee', marginTop: '28px' }}>Education</h3>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '12px' }}>
+        <h3 className={styles.subheading}>Education</h3>
+        <div className={styles.educationSection}>
           <div>
             <strong>Bachelor's Degree</strong>
           </div>
-          <div style={{ 
-            width: '2px', 
-            height: '40px', 
-            background: '#ccc',
-            margin: '0 4px'
-          }}></div>
+          <div className={styles.educationDivider}></div>
           <div>
             <strong>ESMAD - Escola Superior de Media Artes e Design</strong><br />
             Web Development & Multimedia Design<br />
@@ -182,53 +109,40 @@ const AboutMe = () => {
           </div>
         </div>
 
-        <h3 style={{ color: '#0053ee', marginTop: '32px', marginBottom: '16px' }}>Find Me Here</h3>
-        <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
-          <a href="https://github.com/DuartePortfolio" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
-              <i className="devicon-github-original" style={{ fontSize: '28px', filter: 'grayscale(100%)', opacity: 0.7 }}></i>
-              <span style={{ fontSize: '11px', color: '#666' }}>GitHub</span>
+        <h3 className={styles.subheading}>Find Me Here</h3>
+        <div className={styles.socialLinks}>
+          <a href="https://github.com/DuartePortfolio" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+            <div className={styles.socialItem}>
+              <i className={`devicon-github-original ${styles.socialIcon}`}></i>
+              <span className={styles.socialLabel}>GitHub</span>
             </div>
           </a>
-          <a href="https://www.linkedin.com/in/duartepfernandes/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
-              <i className="devicon-linkedin-plain" style={{ fontSize: '28px', filter: 'grayscale(100%)', opacity: 0.7 }}></i>
-              <span style={{ fontSize: '11px', color: '#666' }}>LinkedIn</span>
+          <a href="https://www.linkedin.com/in/duartepfernandes/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+            <div className={styles.socialItem}>
+              <i className={`devicon-linkedin-plain ${styles.socialIcon}`}></i>
+              <span className={styles.socialLabel}>LinkedIn</span>
             </div>
           </a>
-          <a href="mailto:dufernandes753@gmail.com" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
-              <span style={{ fontSize: '28px', filter: 'grayscale(100%)', opacity: 0.7 }}>✉️</span>
-              <span style={{ fontSize: '11px', color: '#666' }}>Email</span>
+          <a href="mailto:dufernandes753@gmail.com" className={styles.socialLink}>
+            <div className={styles.socialItem}>
+              <span className={styles.socialIcon}>✉️</span>
+              <span className={styles.socialLabel}>Email</span>
             </div>
           </a>
         </div>
       </div>
       
-      <div style={{ 
-        width: '200px', 
-        height: '200px', 
-        border: '2px solid #ccc',
-        background: '#f0f0f0',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexShrink: 0,
-        marginTop: '0',
-        overflow: 'hidden'
-      }}>
+      <div className={`${styles.photoContainer} about-me-photo`}>
         <img 
           src={profilePhoto} 
           alt="Duarte Fernandes" 
-          style={{ 
-            width: '100%', 
-            height: '100%', 
-            objectFit: 'cover' 
-          }} 
+          className={styles.photo}
         />
       </div>
     </div>
   );
-};
+});
+
+AboutMe.displayName = 'AboutMe';
 
 export default AboutMe;

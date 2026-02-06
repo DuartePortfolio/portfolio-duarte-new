@@ -1,68 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, memo, useCallback } from 'react';
+import styles from './ProjectDetails.module.css';
 
-const ImageGallery = ({ images }) => {
+const ImageGallery = memo(({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   if (!images || images.length === 0) return null;
+  
   if (images.length === 1) {
     const img = images[0];
     return (
-      <div style={{ marginBottom: '8px' }}>
+      <div className={styles.singleImageContainer}>
         {img.placeholder ? (
-          <div style={{ 
-            width: 'calc(100% - 16px)', 
-            height: '400px',
-            margin: '0 8px',
-            background: '#f0f0f0',
-            border: '2px dashed #ccc',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: '4px'
-          }}>
-            <span style={{ color: '#999', fontSize: '11px', textAlign: 'center', padding: '10px' }}>
+          <div className={styles.placeholderImage}>
+            <span className={styles.placeholderText}>
               Image Placeholder
             </span>
           </div>
         ) : (
-          <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
+          <div className={styles.imageWrapper}>
             <img 
               src={img.src} 
               alt={img.caption}
               onClick={() => window.open(img.src, '_blank')}
-              style={{ 
-                width: img.type === 'screenshot' ? '50%' : 'calc(100% - 16px)',
-                margin: '0 8px',
-                height: 'auto',
-                objectFit: 'contain',
-                border: '1px solid #ccc',
-                marginBottom: '4px',
-                cursor: 'pointer'
-              }}
+              className={`${styles.image} ${img.type === 'screenshot' ? styles.screenshotImage : ''}`}
               title="Click to view full size"
             />
-            <div style={{
-              position: 'absolute',
-              top: '4px',
-              right: '12px',
-              background: 'rgba(236, 233, 216, 0.9)',
-              border: '1px solid #0053ee',
-              padding: '2px 6px',
-              fontSize: '9px',
-              color: '#0053ee',
-              pointerEvents: 'none'
-            }}>
+            <div className={styles.enlargeHint}>
               🔍 Click to enlarge
             </div>
           </div>
         )}
-        <div style={{ 
-          fontSize: '10px', 
-          color: '#666', 
-          fontStyle: 'italic',
-          textAlign: 'center',
-          padding: '4px'
-        }}>
+        <div className={styles.imageCaption}>
           {img.caption}
         </div>
       </div>
@@ -80,70 +48,27 @@ const ImageGallery = ({ images }) => {
     setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
-  const arrowButtonStyle = {
-    position: 'absolute',
-    top: '50%',
-    transform: 'translateY(-50%)',
-    width: '32px',
-    height: '32px',
-    background: 'rgba(236, 233, 216, 0.85)',
-    border: '2px outset #dfdfdf',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '16px',
-    fontWeight: 'bold',
-    color: '#000',
-    userSelect: 'none',
-    zIndex: 10
-  };
-
   return (
-    <div style={{ marginBottom: '8px' }}>
-      <div style={{ position: 'relative', marginBottom: '4px', padding: '0 8px' }}>
+    <div className={styles.galleryContainer}>
+      <div className={styles.galleryWrapper}>
         {currentImage.placeholder ? (
-          <div style={{ 
-            width: '100%', 
-            height: '400px',
-            background: '#f0f0f0',
-            border: '2px dashed #ccc',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <span style={{ color: '#999', fontSize: '11px', textAlign: 'center', padding: '10px' }}>
+          <div className={styles.placeholderImage}>
+            <span className={styles.placeholderText}>
               Image Placeholder
             </span>
           </div>
         ) : (
           <>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div className={styles.galleryImageContainer}>
               <img 
                 src={currentImage.src} 
                 alt={currentImage.caption}
                 onClick={() => window.open(currentImage.src, '_blank')}
-                style={{ 
-                  width: currentImage.type === 'screenshot' ? '50%' : '100%',
-                  height: 'auto',
-                  objectFit: 'contain',
-                  border: '1px solid #ccc',
-                  cursor: 'pointer'
-                }}
+                className={`${styles.galleryImage} ${currentImage.type === 'screenshot' ? styles.screenshotImage : ''}`}
                 title="Click to view full size"
               />
             </div>
-            <div style={{
-              position: 'absolute',
-              top: '4px',
-              right: '12px',
-              background: 'rgba(236, 233, 216, 0.9)',
-              border: '1px solid #0053ee',
-              padding: '2px 6px',
-              fontSize: '9px',
-              color: '#0053ee',
-              pointerEvents: 'none'
-            }}>
+            <div className={styles.enlargeHint}>
               🔍 Click to enlarge
             </div>
           </>
@@ -151,37 +76,27 @@ const ImageGallery = ({ images }) => {
         
         <button
           onClick={handlePrevious}
-          style={{ ...arrowButtonStyle, left: '8px' }}
-          onMouseDown={(e) => e.currentTarget.style.border = '2px inset #dfdfdf'}
-          onMouseUp={(e) => e.currentTarget.style.border = '2px outset #dfdfdf'}
-          onMouseLeave={(e) => e.currentTarget.style.border = '2px outset #dfdfdf'}
+          className={`${styles.arrowButton} ${styles.arrowButtonLeft}`}
         >
           ◄
         </button>
         
         <button
           onClick={handleNext}
-          style={{ ...arrowButtonStyle, right: '8px' }}
-          onMouseDown={(e) => e.currentTarget.style.border = '2px inset #dfdfdf'}
-          onMouseUp={(e) => e.currentTarget.style.border = '2px outset #dfdfdf'}
-          onMouseLeave={(e) => e.currentTarget.style.border = '2px outset #dfdfdf'}
+          className={`${styles.arrowButton} ${styles.arrowButtonRight}`}
         >
           ►
         </button>
       </div>
       
-      <div style={{ 
-        fontSize: '10px', 
-        color: '#666', 
-        fontStyle: 'italic',
-        textAlign: 'center',
-        padding: '4px'
-      }}>
+      <div className={styles.imageCaption}>
         {currentImage.caption} ({currentIndex + 1} / {images.length})
       </div>
     </div>
   );
-};
+});
+
+ImageGallery.displayName = 'ImageGallery';
 
 const highlightText = (text) => {
   const keywords = [
@@ -194,66 +109,43 @@ const highlightText = (text) => {
   
   return parts.map((part, i) => {
     if (keywords.some(keyword => keyword.toLowerCase() === part.toLowerCase())) {
-      return <span key={i} style={{ textDecoration: 'underline', fontWeight: '600' }}>{part}</span>;
+      return <span key={i} className={styles.highlight}>{part}</span>;
     }
     return part;
   });
 };
 
-const ProjectDetails = ({ project }) => {
-  if (!project) return null;
-
-  const scrollToSection = (index) => {
+const ProjectDetails = memo(({ project }) => {
+  const scrollToSection = useCallback((index) => {
     const element = document.getElementById(`section-${index}`);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-  };
+  }, []);
+
+  if (!project) return null;
 
   return (
-    <div style={{ fontFamily: 'Tahoma, sans-serif', fontSize: '12px' }}>
-      <h2 style={{ color: '#0053ee', marginTop: 0 }}>{project.title}</h2>
+    <div className={styles.container}>
+      <h2 className={styles.heading}>{project.title}</h2>
       
-      <div style={{ marginBottom: '20px' }}>
+      <div className={styles.heroImageContainer}>
         <img 
           src={project.image} 
           alt={project.title}
-          style={{ 
-            width: '100%', 
-            height: '200px', 
-            objectFit: 'cover',
-            border: '1px solid #ccc',
-            marginBottom: '10px'
-          }}
+          className={`${styles.heroImage} ${project.id === 'voltzy' ? styles.heroImageVoltzy : ''}`}
         />
       </div>
 
       {project.sections && (
-        <section style={{ 
-          marginBottom: '20px', 
-          padding: '12px',
-          background: '#f0f0f0',
-          border: '1px solid #ccc'
-        }}>
-          <h3 style={{ color: '#0053ee', fontSize: '13px', marginTop: 0, marginBottom: '8px' }}>Table of Contents</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        <section className={styles.toc}>
+          <h3 className={styles.tocHeading}>Table of Contents</h3>
+          <div className={styles.tocList}>
             {project.sections.map((section, index) => (
               <button
                 key={index}
                 onClick={() => scrollToSection(index)}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  color: '#0053ee',
-                  cursor: 'pointer',
-                  textDecoration: 'none',
-                  fontSize: '11px',
-                  padding: '2px 4px',
-                  textAlign: 'left',
-                  fontFamily: 'inherit'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.textDecoration = 'underline'}
-                onMouseLeave={(e) => e.currentTarget.style.textDecoration = 'none'}
+                className={styles.tocButton}
               >
                 → {section.title}
               </button>
@@ -268,13 +160,13 @@ const ProjectDetails = ({ project }) => {
             <section 
               key={index} 
               id={`section-${index}`}
-              style={{ marginBottom: '20px', scrollMarginTop: '10px' }}
+              className={styles.section}
             >
-              <h3 style={{ color: '#0053ee', fontSize: '13px', marginBottom: '8px' }}>{section.title}</h3>
-              <div style={{ whiteSpace: 'pre-line', lineHeight: '1.6' }}>{highlightText(section.content)}</div>
+              <h3 className={styles.sectionTitle}>{section.title}</h3>
+              <div className={styles.sectionContent}>{highlightText(section.content)}</div>
               
               {section.images && section.images.length > 0 && (
-                <div style={{ marginTop: '12px' }}>
+                <div className={styles.imagesContainer}>
                   <ImageGallery images={section.images} />
                 </div>
               )}
@@ -284,46 +176,48 @@ const ProjectDetails = ({ project }) => {
       ) : (
         <>
           {project.features && (
-            <section style={{ marginBottom: '20px' }}>
-              <h3 style={{ color: '#0053ee', fontSize: '13px', marginBottom: '8px' }}>Key Features</h3>
-              <ul>
+            <section className={styles.section}>
+              <h3 className={styles.sectionTitle}>Key Features</h3>
+              <ul className={styles.featuresList}>
                 {project.features.map((feature, index) => (
-                  <li key={index} style={{ marginBottom: '4px' }}>{feature}</li>
+                  <li key={index}>{feature}</li>
                 ))}
               </ul>
             </section>
           )}
 
           {project.responsibilities && (
-            <section style={{ marginBottom: '20px' }}>
-              <h3 style={{ color: '#0053ee', fontSize: '13px', marginBottom: '8px' }}>My Role & Responsibilities</h3>
-              <ul>
+            <section className={styles.section}>
+              <h3 className={styles.sectionTitle}>My Role & Responsibilities</h3>
+              <ul className={styles.responsibilitiesList}>
                 {project.responsibilities.map((resp, index) => (
-                  <li key={index} style={{ marginBottom: '4px' }}>{resp}</li>
+                  <li key={index}>{resp}</li>
                 ))}
               </ul>
             </section>
           )}
 
           {project.challenges && (
-            <section style={{ marginBottom: '20px' }}>
-              <h3 style={{ color: '#0053ee', fontSize: '13px', marginBottom: '8px' }}>Challenges & Solutions</h3>
-              {project.challenges.map((challenge, index) => (
-                <div key={index} style={{ marginBottom: '12px' }}>
-                  <p style={{ margin: '0 0 4px 0' }}>
-                    <strong>Challenge:</strong> {challenge.problem}
-                  </p>
-                  <p style={{ margin: 0, paddingLeft: '16px' }}>
-                    <strong>Solution:</strong> {challenge.solution}
-                  </p>
-                </div>
-              ))}
+            <section className={styles.section}>
+              <h3 className={styles.sectionTitle}>Challenges & Solutions</h3>
+              <div className={styles.challengesList}>
+                {project.challenges.map((challenge, index) => (
+                  <div key={index} className={styles.challengeItem}>
+                    <p>
+                      <strong>Challenge:</strong> {challenge.problem}
+                    </p>
+                    <p className={styles.challengeSolution}>
+                      <strong>Solution:</strong> {challenge.solution}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </section>
           )}
 
           {project.duration && (
-            <section style={{ marginBottom: '20px' }}>
-              <h3 style={{ color: '#0053ee', fontSize: '13px', marginBottom: '8px' }}>Project Timeline</h3>
+            <section className={`${styles.section} ${styles.timeline}`}>
+              <h3 className={styles.sectionTitle}>Project Timeline</h3>
               <p><strong>Duration:</strong> {project.duration}</p>
               <p><strong>Status:</strong> {project.status}</p>
             </section>
@@ -332,20 +226,13 @@ const ProjectDetails = ({ project }) => {
       )}
 
       {project.technologies && (
-        <section style={{ marginBottom: '20px' }}>
-          <h3 style={{ color: '#0053ee', fontSize: '13px', marginBottom: '8px' }}>Technologies Used</h3>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+        <section className={`${styles.section} ${styles.technologies}`}>
+          <h3 className={styles.sectionTitle}>Technologies Used</h3>
+          <div className={styles.techGrid}>
             {project.technologies.map((tech, index) => (
               <span 
                 key={index}
-                style={{
-                  padding: '4px 8px',
-                  background: '#e8eef7',
-                  border: '1px solid #0053ee',
-                  borderRadius: '3px',
-                  fontSize: '11px',
-                  color: '#0053ee'
-                }}
+                className={styles.techTag}
               >
                 {tech}
               </span>
@@ -355,12 +242,12 @@ const ProjectDetails = ({ project }) => {
       )}
 
       {project.links && (
-        <section>
-          <h3 style={{ color: '#0053ee', fontSize: '13px', marginBottom: '8px' }}>Links</h3>
+        <section className={styles.links}>
+          <h3 className={styles.sectionTitle}>Links</h3>
           {project.links.github && (
             <p>
               <strong>GitHub:</strong>{' '}
-              <a href={project.links.github} target="_blank" rel="noopener noreferrer" style={{ color: '#0053ee' }}>
+              <a href={project.links.github} target="_blank" rel="noopener noreferrer">
                 View Repository
               </a>
             </p>
@@ -368,7 +255,7 @@ const ProjectDetails = ({ project }) => {
           {project.links.live && (
             <p>
               <strong>Live Demo:</strong>{' '}
-              <a href={project.links.live} target="_blank" rel="noopener noreferrer" style={{ color: '#0053ee' }}>
+              <a href={project.links.live} target="_blank" rel="noopener noreferrer">
                 View Live Site
               </a>
             </p>
@@ -377,6 +264,8 @@ const ProjectDetails = ({ project }) => {
       )}
     </div>
   );
-};
+});
+
+ProjectDetails.displayName = 'ProjectDetails';
 
 export default ProjectDetails;

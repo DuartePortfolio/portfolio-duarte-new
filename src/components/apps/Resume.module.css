@@ -1,0 +1,133 @@
+.container {
+  font-family: Tahoma, sans-serif;
+  font-size: 12px;
+}
+
+.heading {
+  color: #0053ee;
+  margin-top: 0;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.name {
+  color: #0053ee;
+  font-size: 13px;
+}
+
+.contactInfo {
+  margin: 4px 0;
+  font-size: 11px;
+  color: #666;
+}
+
+.links {
+  margin: 4px 0;
+  font-size: 11px;
+  color: #0053ee;
+}
+
+.links a {
+  color: #0053ee;
+}
+
+.sectionTitle {
+  color: #0053ee;
+  font-size: 13px;
+  border-bottom: 2px solid #0053ee;
+  padding-bottom: 4px;
+}
+
+.summary {
+  margin-top: 8px;
+  line-height: 1.5;
+  font-size: 11px;
+}
+
+.educationItem {
+  margin-top: 8px;
+}
+
+.educationItem:not(:first-child) {
+  margin-top: 12px;
+}
+
+.educationTitle {
+  margin: 4px 0;
+  font-weight: bold;
+}
+
+.educationDetails {
+  margin: 4px 0;
+  font-size: 11px;
+  color: #666;
+}
+
+.skillCategory {
+  margin-bottom: 8px;
+}
+
+.skillCategoryTitle {
+  margin: 4px 0;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.skillList {
+  margin: 4px 0;
+  font-size: 11px;
+  padding-left: 12px;
+}
+
+.projectItem {
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+.projectTitle {
+  margin: 4px 0;
+  font-weight: bold;
+}
+
+.projectTech {
+  margin: 4px 0;
+  font-size: 11px;
+  color: #666;
+}
+
+.projectList {
+  margin-top: 4px;
+  padding-left: 20px;
+  font-size: 11px;
+}
+
+.projectList li {
+  margin-bottom: 4px;
+}
+
+.languageItem {
+  margin: 4px 0;
+  font-size: 11px;
+}
+
+.interests {
+  margin-top: 8px;
+  font-size: 11px;
+}
+
+.downloadNotice {
+  margin-top: 20px;
+  padding: 12px;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.downloadText {
+  margin: 0;
+  font-size: 11px;
+  text-align: center;
+  color: #666;
+}

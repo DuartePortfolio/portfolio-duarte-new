@@ -1,0 +1,64 @@
+.container {
+  font-family: Tahoma, sans-serif;
+  font-size: 12px;
+}
+
+.heading {
+  color: #0053ee;
+  margin-top: 0;
+}
+
+.form {
+  margin-top: 20px;
+}
+
+.formGroup {
+  margin-bottom: 12px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+.input {
+  width: 100%;
+  padding: 4px;
+  border: 1px solid #7f9db9;
+  font-family: Tahoma, sans-serif;
+  font-size: 11px;
+}
+
+.textarea {
+  width: 100%;
+  padding: 4px;
+  border: 1px solid #7f9db9;
+  font-family: Tahoma, sans-serif;
+  font-size: 11px;
+  resize: vertical;
+}
+
+.submitButton {
+  padding: 6px 20px;
+  background: #ece9d8;
+  border: 1px solid;
+  border-color: #fff #000 #000 #fff;
+  font-family: Tahoma, sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.submitButton:active {
+  border-color: #000 #fff #fff #000;
+}
+
+.contactInfo {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+}
+
+.contactInfo p {
+  margin: 8px 0;
+}
