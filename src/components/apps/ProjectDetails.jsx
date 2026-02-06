@@ -32,6 +32,53 @@ const ProjectDetails = ({ project }) => {
             <section key={index} style={{ marginBottom: '20px' }}>
               <h3 style={{ color: '#0053ee', fontSize: '13px', marginBottom: '8px' }}>{section.title}</h3>
               <div style={{ whiteSpace: 'pre-line', lineHeight: '1.6' }}>{section.content}</div>
+              
+              {section.images && section.images.length > 0 && (
+                <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  {section.images.map((img, imgIndex) => (
+                    <div key={imgIndex} style={{ marginBottom: '8px' }}>
+                      {img.placeholder ? (
+                        <div style={{ 
+                          width: '100%', 
+                          height: '180px',
+                          background: '#f0f0f0',
+                          border: '2px dashed #ccc',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          marginBottom: '4px'
+                        }}>
+                          <span style={{ color: '#999', fontSize: '11px', textAlign: 'center', padding: '10px' }}>
+                            Image Placeholder
+                          </span>
+                        </div>
+                      ) : (
+                        <img 
+                          src={img.src} 
+                          alt={img.caption}
+                          style={{ 
+                            width: '100%', 
+                            height: 'auto',
+                            maxHeight: '200px',
+                            objectFit: 'contain',
+                            border: '1px solid #ccc',
+                            marginBottom: '4px'
+                          }}
+                        />
+                      )}
+                      <div style={{ 
+                        fontSize: '10px', 
+                        color: '#666', 
+                        fontStyle: 'italic',
+                        textAlign: 'center',
+                        padding: '4px'
+                      }}>
+                        {img.caption}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </section>
           ))}
         </>

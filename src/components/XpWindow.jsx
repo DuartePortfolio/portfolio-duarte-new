@@ -11,7 +11,9 @@ const XpWindow = ({
   isActive,
   isMaximized = false,
   initialPosition = { x: 100, y: 100 },
-  zIndex = 1
+  zIndex = 1,
+  width,
+  height
 }) => {
   const [position, setPosition] = useState(initialPosition);
   const [isDragging, setIsDragging] = useState(false);
@@ -75,7 +77,9 @@ const XpWindow = ({
       } : { 
         left: `${position.x}px`, 
         top: `${position.y}px`,
-        zIndex: zIndex
+        zIndex: zIndex,
+        ...(width && { width: `${width}px` }),
+        ...(height && { height: `${height}px` })
       }}
       onClick={() => onFocus && onFocus()}
     >

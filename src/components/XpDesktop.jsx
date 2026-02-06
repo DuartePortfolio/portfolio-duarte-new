@@ -16,8 +16,8 @@ import documentIcon from '../img/Windows XP Icons/Generic Document.png';
 
 const XpDesktop = () => {
   const [apps, setApps] = useState([
-    { id: 'about', name: 'About Me', icon: userIcon, component: AboutMe, position: { x: 110, y: 40 }, isOpen: true, isMinimized: false, isMaximized: false, zIndex: 100 },
-    { id: 'projects', name: 'Projects', icon: briefcaseIcon, component: Projects, position: { x: 860, y: 40 }, isOpen: false, isMinimized: false, isMaximized: false, zIndex: 101, componentProps: {} },
+    { id: 'about', name: 'About Me', icon: userIcon, component: AboutMe, position: { x: 1100, y: 40 }, isOpen: true, isMinimized: false, isMaximized: false, zIndex: 100, width: 750, height: 700 },
+    { id: 'projects', name: 'Projects', icon: briefcaseIcon, component: Projects, position: { x: 110, y: 40 }, isOpen: false, isMinimized: false, isMaximized: false, zIndex: 101, componentProps: {} },
     { id: 'contact', name: 'Contact', icon: emailIcon, component: Contact, position: { x: 1425, y: 40 }, isOpen: false, isMinimized: false, isMaximized: false, zIndex: 102 },
     { id: 'resume', name: 'Resume / CV', icon: documentIcon, component: Resume, position: { x: 250, y: 200 }, isOpen: false, isMinimized: false, isMaximized: false, zIndex: 100 },
   ]);
@@ -144,7 +144,9 @@ const XpDesktop = () => {
       position: { x: 300 + (projectDetailWindows.length * 30), y: 80 + (projectDetailWindows.length * 30) },
       isMinimized: false,
       isMaximized: false,
-      zIndex: nextZIndex
+      zIndex: nextZIndex,
+      width: 900,
+      height: 650
     };
 
     setProjectDetailWindows([...projectDetailWindows, newWindow]);
@@ -229,6 +231,8 @@ const XpDesktop = () => {
             isMaximized={app.isMaximized}
             initialPosition={app.position}
             zIndex={app.zIndex}
+            width={app.width}
+            height={app.height}
           >
             <AppComponent {...componentProps} />
           </XpWindow>
@@ -251,6 +255,8 @@ const XpDesktop = () => {
             isMaximized={window.isMaximized}
             initialPosition={window.position}
             zIndex={window.zIndex}
+            width={window.width}
+            height={window.height}
           >
             <WindowComponent {...window.componentProps} />
           </XpWindow>

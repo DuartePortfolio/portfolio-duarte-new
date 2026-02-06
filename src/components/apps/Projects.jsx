@@ -1,4 +1,5 @@
 import React from 'react';
+import pokestopImage from '../../img/pokestop.jpeg';
 
 const Projects = ({ onProjectClick }) => {
   const projects = [
@@ -8,8 +9,8 @@ const Projects = ({ onProjectClick }) => {
       description: 'Microservices-based Pokémon trainer platform demonstrating service decomposition, API gateway patterns, containerized deployment, and multi-database persistence.',
       tech: 'Node.js, Python/Flask, MySQL, MongoDB, Docker, NGINX',
       highlights: 'Microservices architecture, Multi-database system, Container orchestration',
-      image: 'https://via.placeholder.com/400x200/4a90e2/ffffff?text=PokeStop',
-      fullDescription: 'PokéStop is a microservices-based Pokémon trainer platform where users can register, explore the Pokédex, encounter and catch Pokémon via a mini-game, manage a personal collection, and build battle teams. The project is designed as an educational cloud-native system to demonstrate service decomposition, API gateway patterns, containerized deployment, and the use of multiple databases in a realistic web stack.',
+      image: pokestopImage,
+      fullDescription: 'PokéStop is a microservices‑based online Pokémon trainer platform where users register as trainers, explore the Pokédex, encounter and catch Pokémon through a mini‑game, manage a personal collection, and build teams of up to six Pokémon. The goal of the project was to practice modern cloud‑native architecture end‑to‑end: API gateway patterns, independently deployable services, REST and GraphQL APIs, containerized infrastructure, and multi‑database persistence.',
       technologies: [
         'Node.js',
         'Express.js',
@@ -28,96 +29,102 @@ const Projects = ({ onProjectClick }) => {
       ],
       sections: [
         {
-          title: 'Architecture and Service Design',
-          content: `At a high level, the system is composed of a client layer (HTML/CSS/vanilla JS), an NGINX API gateway, six microservices, and two databases (MySQL 8.0 and MongoDB 7.0), all running in Docker containers on a shared bridge network. The gateway exposes clean public routes, forwards requests to the correct internal service based on path, and also serves the static frontend assets.
-
-The microservices layer is split into:
-
-• Authentication Service (Node.js/Express, MySQL): Handles registration and login, hashes passwords using bcrypt, and issues short-lived JWTs used across the platform.
-
-• User Service (Node.js/Express + GraphQL, MySQL): Manages trainer metadata and exposes both REST and a GraphQL endpoint (/users/graphql) for flexible querying and updates.
-
-• Team Service (Node.js/Express, MySQL): Manages team definitions per user, enforcing ownership and a maximum of six Pokémon per team.
-
-• Pokédex Service (Node.js/Express, MySQL): Provides Pokémon reference data and search endpoints backing the Pokédex views and internal game logic.
-
-• Collection Service (Python/Flask, MongoDB): Stores each caught Pokémon as a MongoDB document, including species, level, stats, and optional nickname.
-
-• Encounter Service (Node.js/Express, MySQL): Implements spawn logic, mini-game scoring, and catch resolution before delegating to the Collection service to persist new Pokémon.
-
-The data layer uses MySQL schemas for users, teams, encounters, and Pokédex data, while MongoDB is dedicated to flexible Pokémon instance documents linked back to relational user and species records.`
+          title: 'Project Overview',
+          content: `PokéStop is a microservices‑based online Pokémon trainer platform where users register as trainers, explore the Pokédex, encounter and catch Pokémon through a mini‑game, manage a personal collection, and build teams of up to six Pokémon. The goal of the project was to practice modern cloud‑native architecture end‑to‑end: API gateway patterns, independently deployable services, REST and GraphQL APIs, containerized infrastructure, and multi‑database persistence.`,
+          images: [
+            { placeholder: true, caption: 'Landing page / main dashboard' }
+          ]
         },
         {
-          title: 'Request Flow and Service Communication',
-          content: `All client traffic goes through the API gateway, which terminates HTTP requests and routes them to the appropriate backend service under /auth, /users, /teams, /pokedex, /collections, and /encounters paths. JWTs issued by the Auth service are attached by the frontend in the Authorization: Bearer <token> header and validated by downstream services to protect user-specific routes.
+          title: 'Architecture and Technologies',
+          content: `The system is built as a set of seven services behind an NGINX API gateway, all orchestrated with Docker Compose and designed to run locally or on Docker Swarm replicas. The stack combines Node.js/Express and Python/Flask microservices with MySQL 8.0 for relational data and MongoDB 7.0 for document‑oriented Pokémon collections.
 
-A typical end-to-end flow:
+API Gateway (NGINX): Central entry point on port 80, handling static file hosting for the frontend and path‑based routing to downstream services under /api/*.
 
-• Login: The browser sends credentials to /auth/login; NGINX forwards to the Auth service, which verifies the user against MySQL and returns a signed JWT.
+Authentication Service: Node.js/Express with MySQL, responsible for registration, login, bcrypt password hashing, and issuing short‑lived JWTs signed via environment‑configured secrets.
 
-• Start Encounter: The client calls /encounters/wild with the JWT; the Encounter service fetches a random species from the Pokédex service, records an encounter in MySQL, and returns encounter details to the user.
+User Service (GraphQL): Node.js/Express with a GraphQL endpoint at /api/users/graphql to query and mutate trainer metadata, enforcing JWT‑based authorization on protected resolvers.
 
-• Catch Pokémon: After the mini-game runs client-side, the score is posted to /encounters/:id/catch; the Encounter service computes catch probability and, on success, calls the Collection service to store a new Pokémon document in MongoDB after validating the species with the Pokédex service.
+Team Service: Node.js/Express REST API that manages teams per user, enforcing ownership and a hard limit of six Pokémon per team.
 
-This pattern shows both client-to-service traffic through the gateway and internal service-to-service HTTP calls, while keeping databases private and only accessible from the respective containers.`
+Pokédex Service: Node.js/Express REST API backing the Pokédex UI with species identifiers, names, and other metadata stored in MySQL.
+
+Collection Service: Python/Flask service backed by MongoDB, storing each caught Pokémon as a document with species references and optional nicknames.
+
+Encounter Service: Node.js/Express service that models location‑based spawns, mini‑game scoring, and catch resolution before creating new collection entries.`,
+          images: [
+            { placeholder: true, caption: 'High‑level microservices architecture diagram' }
+          ]
         },
         {
-          title: 'Frontend and API Surface',
-          content: `The frontend is implemented in static HTML/CSS with vanilla JavaScript, focusing on clean UI flows and simple state handling in the browser. Pages include registration and login, a "Catch Pokémon" mini-game view, collection (PC Box), team builder, and Pokédex browser, all wired to the gateway endpoints via the Fetch API.
+          title: 'Frontend Experience',
+          content: `The frontend is a static HTML5/CSS3/JavaScript application served directly by the API gateway on http://localhost, with dedicated pages for registration, login, encounters, collections, teams, and the Pokédex. The client communicates with backend services exclusively through the gateway using the Fetch API, attaching a Bearer JWT in the Authorization header for authenticated routes.
 
-Key public endpoints exposed through the gateway:
+Key flows I implemented and wired to the APIs:
 
-• POST /auth/register, POST /auth/login for authentication and JWT issuance.
+Registration and Login: Forms post to /api/auth/register and /api/auth/login, handling validation errors and storing the returned JWT client‑side.
 
-• POST /users/graphql for user queries and mutations using GraphQL.
+Pokémon Encounters: The "Find Wild Pokémon" action triggers POST /api/encounters, then opens the mini‑game; once the capture bar resolves, the client posts the score to /api/encounters/catch to determine success.
 
-• GET/POST /teams/user/:userId to retrieve and update team compositions.
+Collection Management: The collection page calls GET /api/collection/user/:userId to display the user's PC Box and POST /api/collection to add new captures.
 
-• POST /encounters and POST /encounters/catch for spawning and resolving encounters.
+Team Builder: Uses GET /api/teams/user/:userId and POST /api/teams/user/:userId to persist team compositions, validating that all members exist in the user's collection.
 
-• GET /collection/user/:userId, POST /collection to fetch and add Pokémon instances.
-
-• GET /pokedex, GET /pokedex/:id for species data used across the UI and services.
-
-I documented these APIs using Swagger/OpenAPI and Postman collections, which made manual testing and debugging across services significantly easier.`
+Pokédex Browser: Fetches paginated or filtered lists from GET /api/pokedex and detailed information from GET /api/pokedex/:id.`,
+          images: [
+            { placeholder: true, caption: 'Auth pages (register/login)' },
+            { placeholder: true, caption: 'Encounter mini‑game flow' },
+            { placeholder: true, caption: 'Collection page (PC Box)' },
+            { placeholder: true, caption: 'Pokédex grid + details modal' },
+            { placeholder: true, caption: 'Team builder' }
+          ]
         },
         {
-          title: 'Data Model and Persistence',
-          content: `The relational schema models users, teams, encounters, and Pokémon species, while MongoDB handles the life-cycle of individual Pokémon instances owned by users. Core relationships include users owning teams and Pokémon instances, species appearing in encounters, and Pokémon instances being assigned to teams through a join table.
+          title: 'Backend Design and APIs',
+          content: `Each microservice exposes a focused API surface, documented via Swagger/OpenAPI and Postman collections for manual and automated testing. The gateway exposes a clean public API while keeping service‑to‑service traffic isolated on a private Docker network for security.
 
-This hybrid design was deliberate:
+Representative endpoints:
 
-• MySQL is used where strong relationships and constraints matter (e.g., ensuring teams and encounters refer to valid users and species).
+Auth: POST /api/auth/register, POST /api/auth/login returning JWTs on success.
 
-• MongoDB stores evolving Pokémon instances as documents, which simplifies extending the model with additional attributes like nicknames or evolution history without costly schema migrations.`
+Users (GraphQL): POST /api/users/graphql for queries such as getUserById and mutations like updateUser.
+
+Teams: GET /api/teams/user/:userId, POST /api/teams/user/:userId with JSON team definitions and server‑side validation of ownership and team size.
+
+Encounters: POST /api/encounters to spawn encounters based on client‑provided latitude/longitude, and POST /api/encounters/catch to resolve the mini‑game outcome into a catch probability.
+
+Collection: GET /api/collection/user/:userId, POST /api/collection to persist new Pokémon instances in MongoDB.
+
+Pokédex: GET /api/pokedex, GET /api/pokedex/:id for species data used across the UI and backend logic.`,
+          images: [
+            { placeholder: true, caption: 'Swagger UI for one or two services' },
+            { placeholder: true, caption: 'Sequence diagram – encounter and capture flow' }
+          ]
         },
         {
-          title: 'Deployment, Operations, and Security',
-          content: `All services, databases, and the gateway run as containers orchestrated by Docker Compose, with support for running as a Docker Swarm stack for simple horizontal scaling. The containers share a dedicated bridge network (pokestop-network) and use named volumes for MySQL and MongoDB so that data persists across restarts.
+          title: 'Data, Deployment, and Operations',
+          content: `Relational data for users, teams, encounters, and Pokédex entries is stored in MySQL 8.0, while each trainer's collection lives in MongoDB 7.0 for flexible document‑oriented queries. Initialization scripts in the database-schemas directory define schemas and seed data, ensuring the system can be brought up reproducibly on any environment.
 
-Operational decisions:
+Operational aspects:
 
-• Configuration and secrets are managed via .env files passed into containers, keeping credentials and JWT secrets out of the codebase.
+Containerization: All services, databases, and the NGINX gateway are defined in a single docker-compose.yml, with support for scaling via Docker Swarm replicas.
 
-• Health checks are implemented as lightweight /health endpoints per service and driven by shell/PowerShell scripts to quickly verify the status of the whole stack.
+Configuration & Secrets: Environment variables (.env) provide database credentials and JWT secrets, keeping sensitive values out of the source code.
 
-• Security includes JWT-based authentication between the client and services, bcrypt password hashing, strict path-based routing at the gateway, and network isolation between internal services and the outside world.`
-        },
-        {
-          title: 'Engineering Focus, Trade-offs, and Future Work',
-          content: `The project intentionally targets a realistic but local-friendly architecture: a single Docker host, one instance per service, and simple HTTP communication without additional infrastructure like message queues or Kubernetes. This constraint let me focus on getting the service boundaries, routing, persistence, and security model correct rather than fighting complex cluster tooling.
+Health & Monitoring: Dedicated /health endpoints and shell/PowerShell health‑check scripts verify service availability and are used for quick diagnostics during development.
 
-I'd next like to evolve the system with:
-
-• Horizontal scaling of services and databases, HA setups (MySQL replication, MongoDB replica sets), and multiple NGINX instances for redundancy.
-
-• Introducing asynchronous messaging for non-critical operations (e.g., emitting events when a Pokémon is caught) to decouple the Encounter and Collection services.
-
-• Hardening production concerns such as rate limiting, service-to-service authentication, CI/CD pipelines, automated tests, and eventually a Kubernetes deployment.
-
-Overall, the project demonstrates practical experience with microservices architecture, HTTP and GraphQL APIs, polyglot services (Node.js + Python), multi-database persistence, and container-based deployment using Docker and NGINX as an API gateway.`
+Security: The platform uses JWT authentication end‑to‑end, bcrypt password hashing, input validation on API boundaries, and network isolation for internal services on a private Docker network.`,
+          images: [
+            { placeholder: true, caption: 'Deployment view (Docker / networks / databases)' },
+            { placeholder: true, caption: 'Example health check or Docker Compose stack running' }
+          ]
         }
-      ]
+      ],
+      duration: '3 months',
+      status: 'Completed',
+      links: {
+        github: '#'
+      }
     },
     {
       id: 'voltzy',
@@ -225,17 +232,19 @@ Overall, the project demonstrates practical experience with microservices archit
           onMouseEnter={(e) => e.currentTarget.style.background = '#e8eef7'}
           onMouseLeave={(e) => e.currentTarget.style.background = '#f9f9f9'}
         >
-          <img 
-            src={project.image} 
-            alt={project.title}
-            style={{ 
-              width: '100%', 
-              height: '120px', 
-              objectFit: 'cover',
-              marginBottom: '8px',
-              border: '1px solid #ccc'
-            }}
-          />
+          <div style={{ background: '#fff', padding: '10px', marginBottom: '8px', textAlign: 'center' }}>
+            <img 
+              src={project.image} 
+              alt={project.title}
+              style={{ 
+                width: '70%', 
+                height: 'auto', 
+                maxHeight: '150px',
+                objectFit: 'contain',
+                border: '1px solid #ccc'
+              }}
+            />
+          </div>
           <h3 style={{ color: '#0053ee', margin: '0 0 8px 0' }}>{project.title}</h3>
           <p style={{ margin: '0 0 8px 0' }}>{project.description}</p>
           <p style={{ margin: '0 0 4px 0', fontSize: '11px', color: '#666' }}>
