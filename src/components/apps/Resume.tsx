@@ -28,7 +28,7 @@ const Resume = memo(() => {
           Full Stack Developer
         </p>
         <p className={styles.contactInfo}>
-          📧 dufernandes753@gmail.com | 📱 +351 911 024 055
+          📧 dufernandes753@gmail.com | (hidden for website development)
         </p>
         <p className={styles.links}>
           🔗 <a href="https://www.linkedin.com/in/duartepfernandes/" target="_blank" rel="noopener noreferrer">LinkedIn</a> | 

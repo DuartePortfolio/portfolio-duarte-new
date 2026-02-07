@@ -324,7 +324,7 @@ const XpDesktop = () => {
           <div
             key={app.id}
             className="xp-desktop-icon"
-            onDoubleClick={() => openApp(app.id)}
+            onClick={() => openApp(app.id)}
           >
             <div className="icon-image"><img src={app.icon} alt={app.name} /></div>
             <div className="icon-label">{app.name}</div>
