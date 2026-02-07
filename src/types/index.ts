@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Common Types
 export interface Position {
   x: number;
   y: number;
@@ -11,11 +10,10 @@ export interface ScreenSize {
   height: number;
 }
 
-// Project Types
 export interface ProjectImage {
   src: string;
   caption: string;
-  type?: string; // Allow any string, not just literal types
+  type?: string; 
   placeholder?: boolean;
 }
 

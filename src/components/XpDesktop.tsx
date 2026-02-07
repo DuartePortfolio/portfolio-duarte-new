@@ -9,10 +9,10 @@ import Projects from './apps/Projects';
 import Contact from './apps/Contact';
 import Resume from './apps/Resume';
 import ProjectDetails from './apps/ProjectDetails';
-import userIcon from '../img/Windows XP Icons/User Accounts.png';
-import briefcaseIcon from '../img/Windows XP Icons/Briefcase.png';
-import emailIcon from '../img/Windows XP Icons/Email.png';
-import documentIcon from '../img/Windows XP Icons/Generic Document.png';
+import userIcon from '../img/Windows XP Icons/User Accounts.webp';
+import briefcaseIcon from '../img/Windows XP Icons/Briefcase.webp';
+import emailIcon from '../img/Windows XP Icons/Email.webp';
+import documentIcon from '../img/Windows XP Icons/Generic Document.webp';
 import windowPositionManager from '../utils/windowPositionManager';
 import './XpDesktop.css';
 
@@ -89,8 +89,8 @@ const XpDesktop = () => {
   const [showShutdown, setShowShutdown] = useState(false);
   const [projectDetailWindows, setProjectDetailWindows] = useState<AppWindow[]>([]);
 
-  // Desktop icons (first 3 apps)
-  const desktopIcons = apps.slice(0, 3);
+  // Desktop icons (first 4 apps - About, Projects, Contact, Resume)
+  const desktopIcons = apps.slice(0, 4);
 
   const openApp = (appId: string) => {
     const app = apps.find(a => a.id === appId);

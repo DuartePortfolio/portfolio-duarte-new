@@ -1,8 +1,9 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import styles from './Contact.module.css';
 
 const Contact = memo(() => {
+  const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,11 +26,6 @@ const Contact = memo(() => {
     setStatus('sending');
 
     try {
-      // EmailJS Configuration - Set these in your .env file:
-      // REACT_APP_EMAILJS_SERVICE_ID=your_service_id
-      // REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id
-      // REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key
-      
       const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
       const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
       const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
@@ -42,16 +38,17 @@ const Contact = memo(() => {
         return;
       }
 
-      const result = await emailjs.send(
+      if (!formRef.current) {
+        throw new Error('Form reference is null');
+      }
+
+      // Initialize EmailJS with public key
+      emailjs.init(publicKey);
+
+      const result = await emailjs.sendForm(
         serviceId,
         templateId,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-          to_name: 'Duarte',
-        },
-        publicKey
+        formRef.current
       );
 
       if (result.text === 'OK') {
@@ -69,10 +66,16 @@ const Contact = memo(() => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    
+    // Map form field names to state
+    if (name === 'from_name') {
+      setFormData({ ...formData, name: value });
+    } else if (name === 'from_email') {
+      setFormData({ ...formData, email: value });
+    } else if (name === 'message') {
+      setFormData({ ...formData, message: value });
+    }
   };
 
   return (
@@ -80,7 +83,7 @@ const Contact = memo(() => {
       <h2 className={styles.heading}>Contact Me</h2>
       <p>Feel free to reach out! I'd love to hear from you.</p>
       
-      <form onSubmit={handleSubmit} className={styles.form} aria-label="Contact form">
+      <form ref={formRef} onSubmit={handleSubmit} className={styles.form} aria-label="Contact form">
         <div className={styles.formGroup}>
           <label htmlFor="contact-name" className={styles.label}>
             Name:
@@ -88,7 +91,7 @@ const Contact = memo(() => {
           <input
             id="contact-name"
             type="text"
-            name="name"
+            name="from_name"
             value={formData.name}
             onChange={handleChange}
             required
@@ -96,6 +99,8 @@ const Contact = memo(() => {
             className={styles.input}
             placeholder="Your name"
           />
+          {/* Hidden input for 'name' field used in From Name */}
+          <input type="hidden" name="name" value={formData.name} />
         </div>
         
         <div className={styles.formGroup}>
@@ -105,7 +110,7 @@ const Contact = memo(() => {
           <input
             id="contact-email"
             type="email"
-            name="email"
+            name="from_email"
             value={formData.email}
             onChange={handleChange}
             required
@@ -113,6 +118,8 @@ const Contact = memo(() => {
             className={styles.input}
             placeholder="your.email@example.com"
           />
+          {/* Hidden input for 'email' field used in Reply To */}
+          <input type="hidden" name="email" value={formData.email} />
         </div>
         
         <div className={styles.formGroup}>
@@ -154,9 +161,9 @@ const Contact = memo(() => {
       )}
       
       <div className={styles.contactInfo}>
-        <p><strong>Email:</strong> <a href="mailto:duarte.ofernandes@gmail.com">duarte.ofernandes@gmail.com</a></p>
-        <p><strong>Phone:</strong> <a href="tel:+351917213850">(+351) 917 213 850</a></p>
-        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/duartefernandes-/" target="_blank" rel="noopener noreferrer">linkedin.com/in/duartefernandes-/</a></p>
+        <p><strong>Email:</strong> <a href="mailto:dufernandes753@gmail.com">dufernandes753@gmail.com</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+351911024055">(+351) 911 024 055</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/duartepfernandes/" target="_blank" rel="noopener noreferrer">linkedin.com/in/duartepfernandes/</a></p>
         <p><strong>GitHub:</strong> <a href="https://github.com/DuartePortfolio" target="_blank" rel="noopener noreferrer">github.com/DuartePortfolio</a></p>
         <p><strong>Location:</strong> Porto, Portugal</p>
       </div>

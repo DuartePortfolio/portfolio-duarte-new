@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import profilePhoto from '../../img/duarte-profile.jfif';
+import profilePhoto from '../../img/duarte-profile.webp';
 import styles from './AboutMe.module.css';
 
 const AboutMe = memo(() => {

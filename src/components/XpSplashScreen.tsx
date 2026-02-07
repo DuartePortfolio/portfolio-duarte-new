@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './XpSplashScreen.css';
-import turnOffIcon from '../img/Windows_Turn_Off_22528.png';
+import turnOffIcon from '../img/Windows_Turn_Off_22528.webp';
 import CrtShutdownOverlay from './CrtShutdownOverlay';
 import { useResponsive } from '../hooks/useMediaQuery';
 

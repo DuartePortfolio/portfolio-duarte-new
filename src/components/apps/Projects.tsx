@@ -1,25 +1,25 @@
 import React, { memo, useMemo } from 'react';
-import pokestopImage from '../../img/pokestop.jpeg';
+import pokestopImage from '../../img/pokestop.webp';
 import styles from './Projects.module.css';
 import { ProjectsProps } from '../../types';
 // PokéStop images
-import landingPageImg from '../../img/pokestop/landingpage.jpeg';
-import microservicesArchImg from '../../img/pokestop/microservices-architecture.jpeg';
-import dockerArchImg from '../../img/pokestop/docker-architecture.jpeg';
-import serviceDepsImg from '../../img/pokestop/service-dependencies.jpeg';
-import catchFluxSeqImg from '../../img/pokestop/catch-flux-sequence.png';
-import catchFlux1Img from '../../img/pokestop/catchflux1.jpeg';
-import catchFlux2Img from '../../img/pokestop/catchflux2.jpeg';
-import catchFlux3Img from '../../img/pokestop/catchflux3.jpeg';
+import landingPageImg from '../../img/pokestop/landingpage.webp';
+import microservicesArchImg from '../../img/pokestop/microservices-architecture.webp';
+import dockerArchImg from '../../img/pokestop/docker-architecture.webp';
+import serviceDepsImg from '../../img/pokestop/service-dependencies.webp';
+import catchFluxSeqImg from '../../img/pokestop/catch-flux-sequence.webp';
+import catchFlux1Img from '../../img/pokestop/catchflux1.webp';
+import catchFlux2Img from '../../img/pokestop/catchflux2.webp';
+import catchFlux3Img from '../../img/pokestop/catchflux3.webp';
 // Voltzy images
-import voltzyImage from '../../img/voltzy/voltzy cover.jfif';
-import voltzyLoginImg from '../../img/voltzy/LoginScreen.jpeg';
-import voltzySigninImg from '../../img/voltzy/signinscreen.jpeg';
-import voltzyDashboardImg from '../../img/voltzy/dashboardscreen.jpeg';
-import voltzyConsumption1Img from '../../img/voltzy/consumptionscreen1.jpeg';
-import voltzyConsumption2Img from '../../img/voltzy/consumptionscreen2.jpeg';
-import voltzyNavImg from '../../img/voltzy/smart_home_app_nav.png';
-import voltzyArchImg from '../../img/voltzy/smart_home_architecture.png';
+import voltzyImage from '../../img/voltzy/voltzycover.webp';
+import voltzyLoginImg from '../../img/voltzy/LoginScreen.webp';
+import voltzySigninImg from '../../img/voltzy/signinscreen.webp';
+import voltzyDashboardImg from '../../img/voltzy/dashboardscreen.webp';
+import voltzyConsumption1Img from '../../img/voltzy/consumptionscreen1.webp';
+import voltzyConsumption2Img from '../../img/voltzy/consumptionscreen2.webp';
+import voltzyNavImg from '../../img/voltzy/smart_home_app_nav.webp';
+import voltzyArchImg from '../../img/voltzy/smart_home_architecture.webp';
 
 const Projects = memo(({ onProjectClick }: ProjectsProps) => {
   const projects = useMemo(() => [

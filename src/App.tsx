@@ -4,7 +4,7 @@ import XpSplashScreen from './components/XpSplashScreen';
 import XpDesktop from './components/XpDesktop';
 import MobileLayout from './components/MobileLayout';
 import { useResponsive } from './hooks/useMediaQuery';
-import windowsLogo from './img/pngimg.com - windows_logos_PNG20.png';
+import windowsLogo from './img/pngimg.com - windows_logos_PNG20.webp';
 
 type ViewType = 'login' | 'desktop';
 

@@ -3,10 +3,8 @@ import styles from './Resume.module.css';
 
 const Resume = memo(() => {
   const handleDownloadCV = () => {
-    // TODO: Add your actual CV PDF file to the public folder
-    // For now, this will show an alert. Replace with actual PDF download
     const link = document.createElement('a');
-    link.href = '/Duarte_Fernandes_CV.pdf'; // Place your PDF in public folder
+    link.href = '/Duarte_Fernandes_CV.pdf';
     link.download = 'Duarte_Fernandes_CV.pdf';
     link.click();
   };
@@ -26,14 +24,14 @@ const Resume = memo(() => {
       
       <section className={styles.section}>
         <h3 className={styles.name}>Duarte Fernandes</h3>
-        <p className={styles.contactInfo}>
-          Full-stack Developer | Porto, Portugal
+        <p className={styles.title}>
+          Full Stack Developer
         </p>
         <p className={styles.contactInfo}>
-          📧 duarte.ofernandes@gmail.com | 📱 (+351) 917 213 850
+          📧 dufernandes753@gmail.com | 📱 +351 911 024 055
         </p>
         <p className={styles.links}>
-          🔗 <a href="https://www.linkedin.com/in/duartefernandes-/" target="_blank" rel="noopener noreferrer">LinkedIn</a> | 
+          🔗 <a href="https://www.linkedin.com/in/duartepfernandes/" target="_blank" rel="noopener noreferrer">LinkedIn</a> | 
           💻 <a href="https://github.com/DuartePortfolio" target="_blank" rel="noopener noreferrer">GitHub</a>
         </p>
       </section>
@@ -43,9 +41,9 @@ const Resume = memo(() => {
           Professional Summary
         </h3>
         <p className={styles.summary}>
-          Full-stack developer with expertise in building scalable web and mobile applications using modern technologies. 
-          Experienced in microservices architecture, RESTful APIs, and cross-platform mobile development. Passionate about 
-          creating efficient, user-focused solutions and continuously learning emerging technologies.
+          As a soon-to-be graduated Full Stack Developer, I am eager to apply my skills in building innovative web and mobile 
+          applications. With strong foundations in both frontend and backend development, I am excited about creating 
+          user-friendly, efficient solutions and continuously expanding my knowledge in emerging technologies.
         </p>
       </section>
 
@@ -54,18 +52,12 @@ const Resume = memo(() => {
           Education
         </h3>
         <div className={styles.educationItem}>
-          <p className={styles.educationTitle}>Bachelor's Degree in Informatics Engineering</p>
+          <p className={styles.educationTitle}>Bachelor's Degree in Computer Engineering</p>
           <p className={styles.educationDetails}>
-            ESMAD (Escola Superior de Media Artes e Design) - Politécnico do Porto
+            ESMAD | School of Media Arts and Design, Polytechnic of Porto
           </p>
           <p className={styles.educationDetails}>
-            2021 - 2024 | Vila do Conde, Portugal
-          </p>
-        </div>
-        <div className={styles.educationItem}>
-          <p className={styles.educationTitle}>High School Diploma - Sciences and Technologies</p>
-          <p className={styles.educationDetails}>
-            Externato Ribadouro | 2018 - 2021 | Porto, Portugal
+            Sept 2023 - February 2027 | Vila do Conde, Portugal
           </p>
         </div>
       </section>
@@ -78,42 +70,35 @@ const Resume = memo(() => {
           <div className={styles.skillCategory}>
             <p className={styles.skillCategoryTitle}>Programming Languages:</p>
             <p className={styles.skillList}>
-              JavaScript/TypeScript, Python, Java, C#, PHP, SQL, HTML5, CSS3
+              JavaScript, TypeScript, Python, Java, C#, PHP, HTML, CSS
             </p>
           </div>
           
           <div className={styles.skillCategory}>
-            <p className={styles.skillCategoryTitle}>Frontend Development:</p>
+            <p className={styles.skillCategoryTitle}>Frameworks & Libraries:</p>
             <p className={styles.skillList}>
-              React, React Native, Expo, Vue.js, Next.js, Angular, Bootstrap, Tailwind CSS
-            </p>
-          </div>
-          
-          <div className={styles.skillCategory}>
-            <p className={styles.skillCategoryTitle}>Backend Development:</p>
-            <p className={styles.skillList}>
-              Node.js, Express.js, Flask, .NET, REST APIs, GraphQL, JWT Authentication
+              React.js, Next.js, Vue.js, Node.js, Express.js, React Native, Flask, .NET
             </p>
           </div>
           
           <div className={styles.skillCategory}>
             <p className={styles.skillCategoryTitle}>Databases:</p>
             <p className={styles.skillList}>
-              MySQL, MongoDB, PostgreSQL, SQL Server, Firebase
+              MySQL, MongoDB, PostgreSQL, SQL Server
             </p>
           </div>
           
           <div className={styles.skillCategory}>
-            <p className={styles.skillCategoryTitle}>DevOps & Tools:</p>
+            <p className={styles.skillCategoryTitle}>Tools & Platforms:</p>
             <p className={styles.skillList}>
-              Docker, Docker Compose, NGINX, Git, GitHub, Postman, Swagger/OpenAPI
+              Git, GitHub, Docker, Postman, VS Code, Figma
             </p>
           </div>
           
           <div className={styles.skillCategory}>
-            <p className={styles.skillCategoryTitle}>Design & Multimedia:</p>
+            <p className={styles.skillCategoryTitle}>Other:</p>
             <p className={styles.skillList}>
-              Figma, Adobe XD, Adobe Photoshop, Adobe Illustrator, Adobe Premiere Pro, DaVinci Resolve
+              REST APIs, GraphQL, Microservices, JWT, Agile Methodologies
             </p>
           </div>
         </div>
@@ -121,40 +106,52 @@ const Resume = memo(() => {
 
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}>
-          Key Projects
+          Projects
         </h3>
         
         <div className={styles.projectItem}>
-          <p className={styles.projectTitle}>Voltzy - Smart Energy Management App</p>
-          <p className={styles.projectTech}>React Native, TypeScript, Node.js, MySQL</p>
+          <p className={styles.projectTitle}>Voltzy - Mobile Energy Management App</p>
+          <p className={styles.projectDate}>October 2025 - Jan 2026</p>
+          <p className={styles.projectTech}>React Native, TypeScript, Expo, Node.js, MySQL</p>
           <ul className={styles.projectList}>
-            <li>Built cross-platform mobile app for real-time energy monitoring and smart home control</li>
-            <li>Implemented JWT authentication, REST API backend, and MySQL database design</li>
-            <li>Created interactive charts for consumption analytics and solar panel monitoring</li>
-            <li>Developed automation routines for energy optimization</li>
+            <li>Developed a cross-platform mobile application to monitor and manage home energy consumption</li>
+            <li>Built REST APIs with JWT authentication for secure user management</li>
+            <li>Designed a MySQL database to store user data, consumption metrics, and device statuses</li>
+            <li>Implemented real-time energy consumption charts and device automation features</li>
           </ul>
         </div>
         
         <div className={styles.projectItem}>
-          <p className={styles.projectTitle}>PokéStop - Microservices Platform</p>
-          <p className={styles.projectTech}>Node.js, Python/Flask, Docker, MySQL, MongoDB</p>
+          <p className={styles.projectTitle}>PokéStop - Microservices Architecture Platform</p>
+          <p className={styles.projectDate}>October 2025 - Jan 2026</p>
+          <p className={styles.projectTech}>Node.js, Python, Flask, Docker, MySQL, MongoDB, GraphQL</p>
           <ul className={styles.projectList}>
-            <li>Designed and implemented microservices architecture with 7 independent services</li>
-            <li>Built API gateway using NGINX for centralized routing and load balancing</li>
-            <li>Developed GraphQL and REST APIs with JWT-based authentication</li>
-            <li>Containerized entire stack using Docker Compose for seamless deployment</li>
+            <li>Designed and implemented a microservices architecture with independent services communicating via REST and GraphQL APIs</li>
+            <li>Configured an NGINX API Gateway for centralized routing and load balancing</li>
+            <li>Built JWT-based authentication and authorization across services</li>
+            <li>Deployed the entire stack using Docker Compose for streamlined development and deployment</li>
           </ul>
         </div>
         
         <div className={styles.projectItem}>
-          <p className={styles.projectTitle}>Bus API - Public Transportation Service</p>
+          <p className={styles.projectTitle}>Bus API</p>
+          <p className={styles.projectDate}>March 2024</p>
           <p className={styles.projectTech}>Node.js, Express.js, MySQL</p>
           <ul className={styles.projectList}>
-            <li>Developed RESTful API for real-time bus tracking and route information</li>
-            <li>Implemented caching strategies and database optimization for performance</li>
-            <li>Created comprehensive API documentation using Swagger</li>
+            <li>Developed a RESTful API to retrieve bus schedules and route information</li>
+            <li>Integrated MySQL for data storage and optimized queries for performance</li>
           </ul>
         </div>
+      </section>
+
+      <section className={styles.section}>
+        <h3 className={styles.sectionTitle}>
+          Soft Skills
+        </h3>
+        <p className={styles.skillList}>
+          Problem-solving, Teamwork, Adaptability, Effective Communication, Time Management, 
+          Attention to Detail, Willingness to Learn
+        </p>
       </section>
 
       <section className={styles.section}>
@@ -166,26 +163,12 @@ const Resume = memo(() => {
             <strong>Portuguese:</strong> Native
           </p>
           <p className={styles.languageItem}>
-            <strong>English:</strong> Fluent (Professional proficiency)
+            <strong>English:</strong> Proficient
           </p>
         </div>
       </section>
 
-      <section className={styles.section}>
-        <h3 className={styles.sectionTitle}>
-          Interests & Hobbies
-        </h3>
-        <p className={styles.interests}>
-          Technology enthusiast, video editing, graphic design, photography, gaming, continuous learning through 
-          online courses and tech communities.
-        </p>
-      </section>
 
-      <div className={styles.downloadNotice}>
-        <p className={styles.downloadText}>
-          💾 PDF download feature coming soon
-        </p>
-      </div>
     </div>
   );
 });

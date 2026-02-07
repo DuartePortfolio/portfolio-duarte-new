@@ -5,11 +5,11 @@ import Projects from './apps/Projects';
 import Contact from './apps/Contact';
 import Resume from './apps/Resume';
 import ProjectDetails from './apps/ProjectDetails';
-import homeIcon from '../img/Windows XP Icons/Desktop.png';
-import userIcon from '../img/Windows XP Icons/User Accounts.png';
-import briefcaseIcon from '../img/Windows XP Icons/Briefcase.png';
-import emailIcon from '../img/Windows XP Icons/Email.png';
-import documentIcon from '../img/Windows XP Icons/Generic Document.png';
+import homeIcon from '../img/Windows XP Icons/Desktop.webp';
+import userIcon from '../img/Windows XP Icons/User Accounts.webp';
+import briefcaseIcon from '../img/Windows XP Icons/Briefcase.webp';
+import emailIcon from '../img/Windows XP Icons/Email.webp';
+import documentIcon from '../img/Windows XP Icons/Generic Document.webp';
 import './MobileLayout.css';
 
 const MobileLayout = ({ onShutdown }: { onShutdown: () => void }) => {

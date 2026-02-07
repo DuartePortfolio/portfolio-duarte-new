@@ -1,14 +1,14 @@
 import React from 'react';
 import './XpStartMenu.css';
-import userAccountIcon from '../img/Windows XP Icons/User Accounts.png';
-import briefcaseIcon from '../img/Windows XP Icons/Briefcase.png';
-import emailIcon from '../img/Windows XP Icons/Email.png';
-import documentIcon from '../img/Windows XP Icons/Generic Document.png';
-import networkIcon from '../img/Windows XP Icons/Network and Internet.png';
-import computerIcon from '../img/Windows XP Icons/My Computer.png';
-import linkIcon from '../img/Windows XP Icons/Internet Shortcut.png';
-import logoutIcon from '../img/Windows XP Icons/Logout.png';
-import powerIcon from '../img/Windows XP Icons/Power.png';
+import userAccountIcon from '../img/Windows XP Icons/User Accounts.webp';
+import briefcaseIcon from '../img/Windows XP Icons/Briefcase.webp';
+import emailIcon from '../img/Windows XP Icons/Email.webp';
+import documentIcon from '../img/Windows XP Icons/Generic Document.webp';
+import networkIcon from '../img/Windows XP Icons/Network and Internet.webp';
+import computerIcon from '../img/Windows XP Icons/My Computer.webp';
+import linkIcon from '../img/Windows XP Icons/Internet Shortcut.webp';
+import logoutIcon from '../img/Windows XP Icons/Logout.webp';
+import powerIcon from '../img/Windows XP Icons/Power.webp';
 import { XpStartMenuProps } from '../types';
 
 const XpStartMenu = ({ userName, userIcon, onAppClick, onShutdown, onClose }: XpStartMenuProps) => {
