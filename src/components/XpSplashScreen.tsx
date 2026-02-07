@@ -58,8 +58,8 @@ const XpSplashScreen = ({
           <span>{isMobile ? 'Turn off mobile phone' : 'Turn off computer'}</span>
         </div>
         <div className="xp-help">
-          After you log on, you can add or change accounts.<br />
-          Just go to Control Panel and click User Accounts.
+          Welcome to my portfolio!<br />
+          Click above to explore my projects and experience.
         </div>
       </div>
 

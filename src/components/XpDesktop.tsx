@@ -12,11 +12,15 @@ import ProjectDetails from './apps/ProjectDetails';
 import userIcon from '../img/Windows XP Icons/User Accounts.webp';
 import briefcaseIcon from '../img/Windows XP Icons/Briefcase.webp';
 import emailIcon from '../img/Windows XP Icons/Email.webp';
-import documentIcon from '../img/Windows XP Icons/Generic Document.webp';
+import documentIcon from '../img/Windows XP Icons/Help and Support - Index.webp';
 import windowPositionManager from '../utils/windowPositionManager';
 import './XpDesktop.css';
 
-const XpDesktop = () => {
+interface XpDesktopProps {
+  onShutdown?: () => void;
+}
+
+const XpDesktop = ({ onShutdown }: XpDesktopProps = {}) => {
   // Get screen dimensions
   const getScreenDimensions = () => ({
     width: window.innerWidth,
@@ -40,7 +44,7 @@ const XpDesktop = () => {
         isMaximized: false, 
         zIndex: 100, 
         width: 750, 
-        height: 700 
+        height: 750 
       },
       { 
         id: 'projects', 
@@ -151,7 +155,7 @@ const XpDesktop = () => {
     setActiveApp(appId);
     setApps(apps.map(a => 
       a.id === appId 
-        ? { ...a, zIndex: nextZIndex }
+        ? { ...a, zIndex: nextZIndex, isMinimized: false }
         : a
     ));
     setNextZIndex(nextZIndex + 1);
@@ -178,6 +182,9 @@ const XpDesktop = () => {
 
   const handleShutdownComplete = () => {
     setShowShutdown(false);
+    if (onShutdown) {
+      onShutdown();
+    }
   };
 
   // Update window positions on screen resize

@@ -29,7 +29,7 @@ function App(): React.ReactElement {
           logoSrc={windowsLogo}
         />
       ) : (
-        isMobile ? <MobileLayout onShutdown={handleShutdown} /> : <XpDesktop />
+        isMobile ? <MobileLayout onShutdown={handleShutdown} /> : <XpDesktop onShutdown={handleShutdown} />
       )}
     </div>
   );

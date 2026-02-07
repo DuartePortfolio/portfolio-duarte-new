@@ -3,12 +3,10 @@ import './XpStartMenu.css';
 import userAccountIcon from '../img/Windows XP Icons/User Accounts.webp';
 import briefcaseIcon from '../img/Windows XP Icons/Briefcase.webp';
 import emailIcon from '../img/Windows XP Icons/Email.webp';
-import documentIcon from '../img/Windows XP Icons/Generic Document.webp';
-import networkIcon from '../img/Windows XP Icons/Network and Internet.webp';
+import documentIcon from '../img/Windows XP Icons/Help and Support - Index.webp';
 import computerIcon from '../img/Windows XP Icons/My Computer.webp';
 import linkIcon from '../img/Windows XP Icons/Internet Shortcut.webp';
-import logoutIcon from '../img/Windows XP Icons/Logout.webp';
-import powerIcon from '../img/Windows XP Icons/Power.webp';
+import powerIcon from '../img/Windows_Turn_Off_22528.webp';
 import { XpStartMenuProps } from '../types';
 
 const XpStartMenu = ({ userName, userIcon, onAppClick, onShutdown, onClose }: XpStartMenuProps) => {
@@ -60,15 +58,17 @@ const XpStartMenu = ({ userName, userIcon, onAppClick, onShutdown, onClose }: Xp
 
           <div className="start-menu-right">
             <div className="start-menu-secondary">
-              <div className="start-menu-item secondary">
-                <span className="start-menu-icon"><img src={networkIcon} alt="Website" /></span>
-                <span className="start-menu-label">My Website</span>
-              </div>
-              <div className="start-menu-item secondary">
+              <div 
+                className="start-menu-item secondary"
+                onClick={() => window.open('https://github.com/duarteportfolio', '_blank')}
+              >
                 <span className="start-menu-icon"><img src={computerIcon} alt="GitHub" /></span>
                 <span className="start-menu-label">GitHub</span>
               </div>
-              <div className="start-menu-item secondary">
+              <div 
+                className="start-menu-item secondary"
+                onClick={() => window.open('https://linkedin.com/in/duartepfernandes', '_blank')}
+              >
                 <span className="start-menu-icon"><img src={linkIcon} alt="LinkedIn" /></span>
                 <span className="start-menu-label">LinkedIn</span>
               </div>
@@ -77,10 +77,6 @@ const XpStartMenu = ({ userName, userIcon, onAppClick, onShutdown, onClose }: Xp
         </div>
 
         <div className="start-menu-footer">
-          <div className="start-menu-item footer" onClick={onClose}>
-            <span className="start-menu-icon"><img src={logoutIcon} alt="Log Off" /></span>
-            <span className="start-menu-label">Log Off</span>
-          </div>
           <div className="start-menu-item footer" onClick={handleShutdown}>
             <span className="start-menu-icon"><img src={powerIcon} alt="Power" /></span>
             <span className="start-menu-label">Turn Off Computer</span>
