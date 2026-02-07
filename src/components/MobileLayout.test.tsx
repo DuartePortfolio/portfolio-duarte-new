@@ -49,7 +49,7 @@ describe('MobileLayout Component', () => {
     const buttons = screen.getAllByRole('button');
     const appButtons = buttons.filter(btn => 
       ['About Me', 'Projects', 'Resume', 'Contact'].some(app => 
-        btn.textContent.includes(app)
+        btn.textContent?.includes(app)
       )
     );
     
