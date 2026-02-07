@@ -277,12 +277,15 @@ Security Features: The system implements secure user registration with JWT-based
     }
   ], []);
 
+  // Filter out bus-api project (hidden for now)
+  const visibleProjects = projects.filter(project => project.id !== 'busapi');
+
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>My Projects</h2>
       <p>Click on any project to view detailed information:</p>
       
-      {projects.map((project, index) => (
+      {visibleProjects.map((project, index) => (
         <div 
           key={index} 
           onClick={() => onProjectClick && onProjectClick(project)}

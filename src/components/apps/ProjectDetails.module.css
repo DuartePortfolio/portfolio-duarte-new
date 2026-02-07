@@ -14,7 +14,7 @@
 
 .heroImage {
   width: 100%;
-  height: 200px;
+  height:350px;
   object-fit: cover;
   object-position: center center;
   border: 1px solid #ccc;
@@ -22,7 +22,7 @@
 }
 
 .heroImageVoltzy {
-  object-position: center top;
+  object-position: center 30%;
 }
 
 .toc {
@@ -119,6 +119,7 @@
   width: calc(100% - 16px);
   margin: 0 8px;
   height: auto;
+  max-height: 300px;
   object-fit: contain;
   border: 1px solid #ccc;
   margin-bottom: 4px;
@@ -126,7 +127,13 @@
 }
 
 .screenshotImage {
-  width: 50%;
+  width: 60%;
+  max-height: 600px;
+}
+
+.screenshotImageSmall {
+  width: 48%;
+  max-height: 500px;
 }
 
 .enlargeHint {

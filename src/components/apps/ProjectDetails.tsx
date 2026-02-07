@@ -2,7 +2,7 @@ import React, { useState, memo, useCallback } from 'react';
 import styles from './ProjectDetails.module.css';
 import { ImageGalleryProps, Project } from '../../types';
 
-const ImageGallery = memo(({ images }: ImageGalleryProps) => {
+const ImageGallery = memo(({ images, useSmallScreenshots }: ImageGalleryProps & { useSmallScreenshots?: boolean }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   if (!images || images.length === 0) return null;
@@ -23,7 +23,7 @@ const ImageGallery = memo(({ images }: ImageGalleryProps) => {
               src={img.src} 
               alt={img.caption}
               onClick={() => window.open(img.src, '_blank')}
-              className={`${styles.image} ${img.type === 'screenshot' ? styles.screenshotImage : ''}`}
+              className={`${styles.image} ${img.type === 'screenshot' ? (useSmallScreenshots ? styles.screenshotImageSmall : styles.screenshotImage) : ''}`}
               title="Click to view full size"
               loading="lazy"
             />
@@ -66,7 +66,7 @@ const ImageGallery = memo(({ images }: ImageGalleryProps) => {
                 src={currentImage.src} 
                 alt={currentImage.caption}
                 onClick={() => window.open(currentImage.src, '_blank')}
-                className={`${styles.galleryImage} ${currentImage.type === 'screenshot' ? styles.screenshotImage : ''}`}
+                className={`${styles.galleryImage} ${currentImage.type === 'screenshot' ? (useSmallScreenshots ? styles.screenshotImageSmall : styles.screenshotImage) : ''}`}
                 title="Click to view full size"
                 loading="lazy"
               />
@@ -170,7 +170,10 @@ const ProjectDetails = memo(({ project }: { project: Project }) => {
               
               {section.images && section.images.length > 0 && (
                 <div className={styles.imagesContainer}>
-                  <ImageGallery images={section.images} />
+                  <ImageGallery 
+                    images={section.images}
+                    useSmallScreenshots={project.id === 'voltzy' && index < 3}
+                  />
                 </div>
               )}
             </section>
