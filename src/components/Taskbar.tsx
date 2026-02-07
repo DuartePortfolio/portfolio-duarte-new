@@ -2,8 +2,9 @@ import React from 'react';
 import './Taskbar.css';
 import volumeIcon from '../img/Windows XP Icons/Volume.png';
 import networkIcon from '../img/Windows XP Icons/Network and Internet.png';
+import { TaskbarProps } from '../types';
 
-const Taskbar = ({ openApps, activeApp, onAppClick, onStartClick, startMenuOpen }) => {
+const Taskbar = ({ openApps, activeApp, onAppClick, onStartClick, startMenuOpen }: TaskbarProps) => {
   return (
     <div className="xp-taskbar">
       <button className={`xp-start-button ${startMenuOpen ? 'active' : ''}`} onClick={onStartClick}>

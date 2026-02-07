@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './CrtShutdownOverlay.css';
 
-const CrtShutdownOverlay = ({ onComplete }) => {
+const CrtShutdownOverlay = ({ onComplete }: { onComplete: () => void }) => {
   const [phase, setPhase] = useState('shutdown'); // 'shutdown', 'black', 'poweron', 'complete'
 
   useEffect(() => {

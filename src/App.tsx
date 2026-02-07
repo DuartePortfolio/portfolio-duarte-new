@@ -1,17 +1,23 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import XpSplashScreen from './components/XpSplashScreen.jsx';
-import XpDesktop from './components/XpDesktop.jsx';
-import MobileLayout from './components/MobileLayout.jsx';
+import XpSplashScreen from './components/XpSplashScreen';
+import XpDesktop from './components/XpDesktop';
+import MobileLayout from './components/MobileLayout';
 import { useResponsive } from './hooks/useMediaQuery';
 import windowsLogo from './img/pngimg.com - windows_logos_PNG20.png';
 
-function App() {
-  const [currentView, setCurrentView] = useState('login'); // 'login' or 'desktop'
+type ViewType = 'login' | 'desktop';
+
+function App(): React.ReactElement {
+  const [currentView, setCurrentView] = useState<ViewType>('login');
   const { isMobile } = useResponsive();
 
   const handleLogin = () => {
     setCurrentView('desktop');
+  };
+
+  const handleShutdown = () => {
+    setCurrentView('login');
   };
 
   return (
@@ -23,7 +29,7 @@ function App() {
           logoSrc={windowsLogo}
         />
       ) : (
-        isMobile ? <MobileLayout /> : <XpDesktop />
+        isMobile ? <MobileLayout onShutdown={handleShutdown} /> : <XpDesktop />
       )}
     </div>
   );

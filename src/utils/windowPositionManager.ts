@@ -11,9 +11,9 @@ const windowPositionManager = {
    * @param {number} screenHeight - Current screen height
    * @returns {{x: number, y: number}} - The calculated position
    */
-  getDefaultPosition: (windowId, screenWidth, screenHeight) => {
+  getDefaultPosition: (windowId: string, screenWidth: number, screenHeight: number) => {
     // Define base positions for each window type
-    const positions = {
+    const positions: Record<string, { x: number; y: number }> = {
       'about': {
         // Right-aligned, responsive to screen width
         x: Math.max(100, screenWidth - 800),
@@ -57,7 +57,7 @@ const windowPositionManager = {
    * @param {number} screenHeight - Current screen height
    * @returns {{x: number, y: number}} - The cascaded position
    */
-  getCascadedPosition: (baseX, baseY, index, screenWidth, screenHeight) => {
+  getCascadedPosition: (baseX: number, baseY: number, index: number, screenWidth: number, screenHeight: number) => {
     const offset = 30; // Pixels to offset each cascaded window
     const maxOffset = 150; // Maximum total offset before wrapping
 
@@ -95,7 +95,7 @@ const windowPositionManager = {
    * @param {number} windowHeight - Height of the window to center
    * @returns {{x: number, y: number}} - The centered position
    */
-  getCenteredPosition: (screenWidth, screenHeight, windowWidth = 700, windowHeight = 500) => {
+  getCenteredPosition: (screenWidth: number, screenHeight: number, windowWidth = 700, windowHeight = 500) => {
     return {
       x: Math.max(0, (screenWidth - windowWidth) / 2),
       y: Math.max(0, (screenHeight - windowHeight) / 2)
@@ -112,7 +112,7 @@ const windowPositionManager = {
    * @param {number} windowHeight - Height of the window
    * @returns {{x: number, y: number}} - Constrained position
    */
-  constrainToScreen: (x, y, screenWidth, screenHeight, windowWidth = 700, windowHeight = 500) => {
+  constrainToScreen: (x: number, y: number, screenWidth: number, screenHeight: number, windowWidth = 700, windowHeight = 500) => {
     const minX = 0;
     const minY = 0;
     const maxX = screenWidth - windowWidth;

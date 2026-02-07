@@ -1,9 +1,15 @@
 import { render, screen } from '@testing-library/react';
-import { useMediaQuery } from './useMediaQuery';
 import MobileLayout from './MobileLayout';
 
 // Mock the useMediaQuery hook
-jest.mock('../hooks/useMediaQuery');
+jest.mock('../hooks/useMediaQuery', () => ({
+  useMediaQuery: jest.fn(() => false),
+  useResponsive: jest.fn(() => ({
+    isMobile: true,
+    isTablet: false,
+    isDesktop: false
+  }))
+}));
 
 describe('MobileLayout Component', () => {
   const defaultProps = {
@@ -12,11 +18,6 @@ describe('MobileLayout Component', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    useMediaQuery.mockReturnValue({
-      isMobile: true,
-      isTablet: false,
-      isDesktop: false
-    });
   });
 
   test('renders mobile header', () => {

@@ -1,7 +1,8 @@
 import React, { useState, memo, useCallback } from 'react';
 import styles from './ProjectDetails.module.css';
+import { ImageGalleryProps, Project } from '../../types';
 
-const ImageGallery = memo(({ images }) => {
+const ImageGallery = memo(({ images }: ImageGalleryProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   if (!images || images.length === 0) return null;
@@ -24,6 +25,7 @@ const ImageGallery = memo(({ images }) => {
               onClick={() => window.open(img.src, '_blank')}
               className={`${styles.image} ${img.type === 'screenshot' ? styles.screenshotImage : ''}`}
               title="Click to view full size"
+              loading="lazy"
             />
             <div className={styles.enlargeHint}>
               🔍 Click to enlarge
@@ -66,6 +68,7 @@ const ImageGallery = memo(({ images }) => {
                 onClick={() => window.open(currentImage.src, '_blank')}
                 className={`${styles.galleryImage} ${currentImage.type === 'screenshot' ? styles.screenshotImage : ''}`}
                 title="Click to view full size"
+                loading="lazy"
               />
             </div>
             <div className={styles.enlargeHint}>
@@ -98,7 +101,7 @@ const ImageGallery = memo(({ images }) => {
 
 ImageGallery.displayName = 'ImageGallery';
 
-const highlightText = (text) => {
+const highlightText = (text: string): (string | React.ReactElement)[] => {
   const keywords = [
     'microservices', 'API gateway', 'Docker Compose', 'GraphQL',
     'REST', 'JWT', 'NGINX', 'MySQL', 'MongoDB'
@@ -115,8 +118,8 @@ const highlightText = (text) => {
   });
 };
 
-const ProjectDetails = memo(({ project }) => {
-  const scrollToSection = useCallback((index) => {
+const ProjectDetails = memo(({ project }: { project: Project }) => {
+  const scrollToSection = useCallback((index: number) => {
     const element = document.getElementById(`section-${index}`);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });

@@ -40,8 +40,8 @@ describe('Projects Component', () => {
   test('calls onProjectClick when project card is clicked', () => {
     const { container } = render(<Projects onProjectClick={mockOnProjectClick} />);
     
-    const pokestopCard = container.firstChild.firstChild; // First project card
-    fireEvent.click(pokestopCard);
+    const pokestopCard = container.firstChild!.firstChild; // First project card
+    fireEvent.click(pokestopCard!);
     
     expect(mockOnProjectClick).toHaveBeenCalledTimes(1);
     expect(mockOnProjectClick).toHaveBeenCalledWith(

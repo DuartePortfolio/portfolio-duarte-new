@@ -54,7 +54,7 @@ describe('XpWindow Component', () => {
   test('calls onFocus when window is clicked', () => {
     const { container } = render(<XpWindow {...defaultProps} />);
     
-    const windowElement = container.firstChild;
+    const windowElement = container.firstChild!;
     fireEvent.mouseDown(windowElement);
     
     expect(defaultProps.onFocus).toHaveBeenCalled();

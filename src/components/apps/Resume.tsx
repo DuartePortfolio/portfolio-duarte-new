@@ -2,9 +2,27 @@ import React, { memo } from 'react';
 import styles from './Resume.module.css';
 
 const Resume = memo(() => {
+  const handleDownloadCV = () => {
+    // TODO: Add your actual CV PDF file to the public folder
+    // For now, this will show an alert. Replace with actual PDF download
+    const link = document.createElement('a');
+    link.href = '/Duarte_Fernandes_CV.pdf'; // Place your PDF in public folder
+    link.download = 'Duarte_Fernandes_CV.pdf';
+    link.click();
+  };
+
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>Resume / CV</h2>
+      <div className={styles.headerSection}>
+        <h2 className={styles.heading}>Resume / CV</h2>
+        <button 
+          onClick={handleDownloadCV} 
+          className={styles.downloadButton}
+          aria-label="Download CV as PDF"
+        >
+          📥 Download PDF
+        </button>
+      </div>
       
       <section className={styles.section}>
         <h3 className={styles.name}>Duarte Fernandes</h3>

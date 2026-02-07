@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect, memo } from 'react';
 import './XpWindow.css';
+import { XpWindowProps } from '../types';
 
 const XpWindow = memo(({ 
   title, 
@@ -14,18 +15,18 @@ const XpWindow = memo(({
   zIndex = 1,
   width,
   height
-}) => {
-  const [position, setPosition] = useState(initialPosition);
+}: XpWindowProps) => {
+  const [position, setPosition] = useState(initialPosition || { x: 100, y: 100 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-  const windowRef = useRef(null);
+  const windowRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseMove = useCallback((e) => {
+  const handleMouseMove = useCallback((e: MouseEvent | TouchEvent) => {
     if (!isDragging) return;
     
     // Support both mouse and touch events
-    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
-    const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+    const clientX = (e as MouseEvent).clientX || ((e as TouchEvent).touches && (e as TouchEvent).touches[0].clientX);
+    const clientY = (e as MouseEvent).clientY || ((e as TouchEvent).touches && (e as TouchEvent).touches[0].clientY);
     
     // Constrain window position to keep title bar visible
     const newX = clientX - dragOffset.x;
@@ -41,14 +42,14 @@ const XpWindow = memo(({
     setIsDragging(false);
   }, []);
 
-  const handleMouseDown = useCallback((e) => {
-    if (e.target.closest('.xp-window-controls')) return;
+  const handleMouseDown = useCallback((e: React.MouseEvent | React.TouchEvent) => {
+    if ((e.target as HTMLElement).closest('.xp-window-controls')) return;
     
     // Support both mouse and touch events
-    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
-    const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+    const clientX = (e as React.MouseEvent).clientX || ((e as React.TouchEvent).touches && (e as React.TouchEvent).touches[0].clientX);
+    const clientY = (e as React.MouseEvent).clientY || ((e as React.TouchEvent).touches && (e as React.TouchEvent).touches[0].clientY);
     
-    const rect = windowRef.current.getBoundingClientRect();
+    const rect = windowRef.current!.getBoundingClientRect();
     setDragOffset({
       x: clientX - rect.left,
       y: clientY - rect.top

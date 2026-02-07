@@ -9,8 +9,9 @@ import computerIcon from '../img/Windows XP Icons/My Computer.png';
 import linkIcon from '../img/Windows XP Icons/Internet Shortcut.png';
 import logoutIcon from '../img/Windows XP Icons/Logout.png';
 import powerIcon from '../img/Windows XP Icons/Power.png';
+import { XpStartMenuProps } from '../types';
 
-const XpStartMenu = ({ userName, userIcon, onAppClick, onShutdown, onClose }) => {
+const XpStartMenu = ({ userName, userIcon, onAppClick, onShutdown, onClose }: XpStartMenuProps) => {
   const apps = [
     { id: 'about', name: 'About Me', icon: userAccountIcon },
     { id: 'projects', name: 'Projects', icon: briefcaseIcon },
@@ -18,7 +19,7 @@ const XpStartMenu = ({ userName, userIcon, onAppClick, onShutdown, onClose }) =>
     { id: 'resume', name: 'Resume / CV', icon: documentIcon },
   ];
 
-  const handleAppClick = (appId) => {
+  const handleAppClick = (appId: string) => {
     onAppClick(appId);
     onClose();
   };

@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import profilePhoto from '../../img/meme.jfif';
+import profilePhoto from '../../img/duarte-profile.jfif';
 import styles from './AboutMe.module.css';
 
 const AboutMe = memo(() => {
@@ -13,6 +13,9 @@ const AboutMe = memo(() => {
         <p>
           I am fluent in English and Portuguese.
         </p>
+        <div className={styles.internshipBadge}>
+          Currently seeking internships.
+        </div>
         
         <h3 className={styles.subheading}>Skills</h3>
         
@@ -59,8 +62,8 @@ const AboutMe = memo(() => {
           <div className={styles.divider}></div>
           <div className={styles.skillGrid}>
             <div className={styles.skillItemFaded}>
-              <i className={`devicon-javascript-plain colored ${styles.skillIcon}`}></i>
-              <span>JavaScript</span>
+              <i className={`devicon-typescript-plain colored ${styles.skillIcon}`}></i>
+              <span>TypeScript</span>
             </div>
             <div className={styles.skillItemFaded}>
               <i className={`devicon-react-original colored ${styles.skillIcon}`}></i>
@@ -135,8 +138,9 @@ const AboutMe = memo(() => {
       <div className={`${styles.photoContainer} about-me-photo`}>
         <img 
           src={profilePhoto} 
-          alt="Duarte Fernandes" 
+          alt="Duarte Fernandes - Full-stack Developer" 
           className={styles.photo}
+          loading="lazy"
         />
       </div>
     </div>

@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
-import './MobileLayout.css';
-import homeIcon from '../img/Windows XP Icons/Desktop.png';
+import { Project } from '../types';
 import AboutMe from './apps/AboutMe';
 import Projects from './apps/Projects';
 import Contact from './apps/Contact';
 import Resume from './apps/Resume';
 import ProjectDetails from './apps/ProjectDetails';
+import homeIcon from '../img/Windows XP Icons/Desktop.png';
 import userIcon from '../img/Windows XP Icons/User Accounts.png';
 import briefcaseIcon from '../img/Windows XP Icons/Briefcase.png';
 import emailIcon from '../img/Windows XP Icons/Email.png';
 import documentIcon from '../img/Windows XP Icons/Generic Document.png';
+import './MobileLayout.css';
 
-const MobileLayout = () => {
+const MobileLayout = ({ onShutdown }: { onShutdown: () => void }) => {
   const [currentApp, setCurrentApp] = useState('menu');
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const apps = [
     { id: 'about', name: 'About Me', icon: userIcon, component: AboutMe },
@@ -22,7 +23,7 @@ const MobileLayout = () => {
     { id: 'resume', name: 'Resume / CV', icon: documentIcon, component: Resume },
   ];
 
-  const handleProjectClick = (project) => {
+  const handleProjectClick = (project: Project) => {
     setSelectedProject(project);
     setCurrentApp('project-detail');
   };
@@ -61,6 +62,7 @@ const MobileLayout = () => {
     }
 
     if (currentApp === 'project-detail') {
+      if (!selectedProject) return null;
       return <ProjectDetails project={selectedProject} />;
     }
 

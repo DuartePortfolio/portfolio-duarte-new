@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './XpDesktop.css';
+import { AppWindow, Project } from '../types';
 import XpWindow from './XpWindow';
 import Taskbar from './Taskbar';
 import XpStartMenu from './XpStartMenu';
@@ -14,6 +14,7 @@ import briefcaseIcon from '../img/Windows XP Icons/Briefcase.png';
 import emailIcon from '../img/Windows XP Icons/Email.png';
 import documentIcon from '../img/Windows XP Icons/Generic Document.png';
 import windowPositionManager from '../utils/windowPositionManager';
+import './XpDesktop.css';
 
 const XpDesktop = () => {
   // Get screen dimensions
@@ -73,23 +74,25 @@ const XpDesktop = () => {
         isOpen: false, 
         isMinimized: false, 
         isMaximized: false, 
-        zIndex: 100 
+        zIndex: 100,
+        width: 800,
+        height: 600
       },
     ];
   };
 
-  const [apps, setApps] = useState(initializeApps());
+  const [apps, setApps] = useState<AppWindow[]>(initializeApps());
   
-  const [activeApp, setActiveApp] = useState('about');
+  const [activeApp, setActiveApp] = useState<string | null>('about');
   const [nextZIndex, setNextZIndex] = useState(101);
   const [startMenuOpen, setStartMenuOpen] = useState(true);
   const [showShutdown, setShowShutdown] = useState(false);
-  const [projectDetailWindows, setProjectDetailWindows] = useState([]);
+  const [projectDetailWindows, setProjectDetailWindows] = useState<AppWindow[]>([]);
 
   // Desktop icons (first 3 apps)
   const desktopIcons = apps.slice(0, 3);
 
-  const openApp = (appId) => {
+  const openApp = (appId: string) => {
     const app = apps.find(a => a.id === appId);
     if (!app) return;
 
@@ -114,7 +117,7 @@ const XpDesktop = () => {
     }
   };
 
-  const closeApp = (appId) => {
+  const closeApp = (appId: string) => {
     setApps(apps.map(a => 
       a.id === appId 
         ? { ...a, isOpen: false, isMinimized: false }
@@ -125,7 +128,7 @@ const XpDesktop = () => {
     }
   };
 
-  const minimizeApp = (appId) => {
+  const minimizeApp = (appId: string) => {
     setApps(apps.map(a => 
       a.id === appId 
         ? { ...a, isMinimized: true }
@@ -136,7 +139,7 @@ const XpDesktop = () => {
     }
   };
 
-  const maximizeApp = (appId) => {
+  const maximizeApp = (appId: string) => {
     setApps(apps.map(a => 
       a.id === appId 
         ? { ...a, isMaximized: !a.isMaximized }
@@ -144,17 +147,17 @@ const XpDesktop = () => {
     ));
   };
 
-  const focusApp = (appId) => {
+  const focusApp = (appId: string) => {
     setActiveApp(appId);
     setApps(apps.map(a => 
       a.id === appId 
-        ? { ...a, zIndex: nextZIndex, isMinimized: false }
+        ? { ...a, zIndex: nextZIndex }
         : a
     ));
     setNextZIndex(nextZIndex + 1);
   };
 
-  const handleTaskbarAppClick = (appId) => {
+  const handleTaskbarAppClick = (appId: string) => {
     const app = apps.find(a => a.id === appId);
     if (!app) return;
 
@@ -221,7 +224,7 @@ const XpDesktop = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleProjectClick = (project) => {
+  const handleProjectClick = (project: Project) => {
     const windowId = `project-${project.id}`;
     
     // Check if window already exists
@@ -252,13 +255,14 @@ const XpDesktop = () => {
     );
 
     // Create new project detail window
-    const newWindow = {
+    const newWindow: AppWindow = {
       id: windowId,
       name: project.title,
       icon: briefcaseIcon,
       component: ProjectDetails,
       componentProps: { project },
       position,
+      isOpen: true,
       isMinimized: false,
       isMaximized: false,
       zIndex: nextZIndex,
@@ -271,14 +275,14 @@ const XpDesktop = () => {
     setNextZIndex(nextZIndex + 1);
   };
 
-  const closeProjectWindow = (windowId) => {
+  const closeProjectWindow = (windowId: string) => {
     setProjectDetailWindows(projectDetailWindows.filter(w => w.id !== windowId));
     if (activeApp === windowId) {
       setActiveApp(null);
     }
   };
 
-  const minimizeProjectWindow = (windowId) => {
+  const minimizeProjectWindow = (windowId: string) => {
     setProjectDetailWindows(projectDetailWindows.map(w =>
       w.id === windowId ? { ...w, isMinimized: true } : w
     ));
@@ -287,13 +291,13 @@ const XpDesktop = () => {
     }
   };
 
-  const maximizeProjectWindow = (windowId) => {
+  const maximizeProjectWindow = (windowId: string) => {
     setProjectDetailWindows(projectDetailWindows.map(w =>
       w.id === windowId ? { ...w, isMaximized: !w.isMaximized } : w
     ));
   };
 
-  const focusProjectWindow = (windowId) => {
+  const focusProjectWindow = (windowId: string) => {
     setActiveApp(windowId);
     setProjectDetailWindows(projectDetailWindows.map(w =>
       w.id === windowId ? { ...w, zIndex: nextZIndex, isMinimized: false } : w
@@ -303,7 +307,7 @@ const XpDesktop = () => {
 
   // Close Start menu on Esc key
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && startMenuOpen) {
         setStartMenuOpen(false);
       }

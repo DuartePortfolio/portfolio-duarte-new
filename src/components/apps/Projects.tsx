@@ -1,6 +1,7 @@
 import React, { memo, useMemo } from 'react';
 import pokestopImage from '../../img/pokestop.jpeg';
 import styles from './Projects.module.css';
+import { ProjectsProps } from '../../types';
 // PokéStop images
 import landingPageImg from '../../img/pokestop/landingpage.jpeg';
 import microservicesArchImg from '../../img/pokestop/microservices-architecture.jpeg';
@@ -20,7 +21,7 @@ import voltzyConsumption2Img from '../../img/voltzy/consumptionscreen2.jpeg';
 import voltzyNavImg from '../../img/voltzy/smart_home_app_nav.png';
 import voltzyArchImg from '../../img/voltzy/smart_home_architecture.png';
 
-const Projects = memo(({ onProjectClick }) => {
+const Projects = memo(({ onProjectClick }: ProjectsProps) => {
   const projects = useMemo(() => [
     {
       id: 'pokestop',
@@ -292,6 +293,7 @@ Security Features: The system implements secure user registration with JWT-based
               src={project.image} 
               alt={project.title}
               className={project.id === 'voltzy' ? styles.voltzyImage : styles.projectImage}
+              loading="lazy"
             />
           </div>
           <h3 className={styles.projectTitle}>{project.title}</h3>
