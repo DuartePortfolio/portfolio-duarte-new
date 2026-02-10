@@ -162,7 +162,7 @@ const Contact = memo(() => {
       
       <div className={styles.contactInfo}>
         <p><strong>Email:</strong> <a href="mailto:dufernandes753@gmail.com">dufernandes753@gmail.com</a></p>
-        <p><strong>Phone:</strong> (hidden for website development)</p>
+        <p><strong>Phone:</strong> +351 911 024 055</p>
         <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/duartepfernandes/" target="_blank" rel="noopener noreferrer">linkedin.com/in/duartepfernandes/</a></p>
         <p><strong>GitHub:</strong> <a href="https://github.com/DuartePortfolio" target="_blank" rel="noopener noreferrer">github.com/DuartePortfolio</a></p>
         <p><strong>Location:</strong> Porto, Portugal</p>
