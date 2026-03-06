@@ -2,7 +2,11 @@ import React, { memo } from 'react';
 import profilePhoto from '../../img/duarte-profile.webp';
 import styles from './AboutMe.module.css';
 
-const AboutMe = memo(() => {
+interface AboutMeProps {
+  onOpenContact?: () => void;
+}
+
+const AboutMe = memo(({ onOpenContact }: AboutMeProps = {}) => {
   return (
     <div className={styles.container}>
       <div className={styles.mainContent}>
@@ -126,12 +130,18 @@ const AboutMe = memo(() => {
               <span className={styles.socialLabel}>LinkedIn</span>
             </div>
           </a>
-          <a href="mailto:dufernandes753@gmail.com" className={styles.socialLink}>
+          <div
+            className={styles.socialLink}
+            onClick={() => onOpenContact ? onOpenContact() : (window.location.href = 'mailto:dufernandes753@gmail.com')}
+            style={{ cursor: 'pointer' }}
+            role="button"
+            aria-label="Open Contact"
+          >
             <div className={styles.socialItem}>
               <span className={styles.socialIcon}>✉️</span>
               <span className={styles.socialLabel}>Email</span>
             </div>
-          </a>
+          </div>
         </div>
       </div>
       

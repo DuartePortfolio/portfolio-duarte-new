@@ -32,7 +32,7 @@ const windowPositionManager = {
       'resume': {
         // Left-center area
         x: Math.min(250, screenWidth * 0.15),
-        y: 200
+        y: 25
       },
       'projectDetail': {
         // Centered-ish, slight offset

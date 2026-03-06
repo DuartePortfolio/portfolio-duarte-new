@@ -13,6 +13,8 @@ import userIcon from '../img/Windows XP Icons/User Accounts.webp';
 import briefcaseIcon from '../img/Windows XP Icons/Briefcase.webp';
 import emailIcon from '../img/Windows XP Icons/Email.webp';
 import documentIcon from '../img/Windows XP Icons/Help and Support - Index.webp';
+import computerIcon from '../img/Windows XP Icons/My Computer.webp';
+import linkIcon from '../img/Windows XP Icons/Internet Shortcut.webp';
 import windowPositionManager from '../utils/windowPositionManager';
 import './XpDesktop.css';
 
@@ -43,8 +45,8 @@ const XpDesktop = ({ onShutdown }: XpDesktopProps = {}) => {
         isMinimized: false, 
         isMaximized: false, 
         zIndex: 100, 
-        width: 750, 
-        height: 750 
+        width: 780, 
+        height: 820 
       },
       { 
         id: 'projects', 
@@ -79,8 +81,8 @@ const XpDesktop = ({ onShutdown }: XpDesktopProps = {}) => {
         isMinimized: false, 
         isMaximized: false, 
         zIndex: 100,
-        width: 800,
-        height: 600
+        width: 820,
+        height: 680
       },
     ];
   };
@@ -89,12 +91,28 @@ const XpDesktop = ({ onShutdown }: XpDesktopProps = {}) => {
   
   const [activeApp, setActiveApp] = useState<string | null>('about');
   const [nextZIndex, setNextZIndex] = useState(101);
-  const [startMenuOpen, setStartMenuOpen] = useState(true);
+  const [startMenuOpen, setStartMenuOpen] = useState(false);
   const [showShutdown, setShowShutdown] = useState(false);
   const [projectDetailWindows, setProjectDetailWindows] = useState<AppWindow[]>([]);
 
   // Desktop icons (first 4 apps - About, Projects, Contact, Resume)
   const desktopIcons = apps.slice(0, 4);
+
+  // External link icons shown on the desktop
+  const externalDesktopLinks = [
+    {
+      id: 'github-ext',
+      name: 'GitHub',
+      icon: computerIcon,
+      url: 'https://github.com/DuartePortfolio'
+    },
+    {
+      id: 'linkedin-ext',
+      name: 'LinkedIn',
+      icon: linkIcon,
+      url: 'https://www.linkedin.com/in/duartepfernandes/'
+    }
+  ];
 
   const openApp = (appId: string) => {
     const app = apps.find(a => a.id === appId);
@@ -337,6 +355,16 @@ const XpDesktop = ({ onShutdown }: XpDesktopProps = {}) => {
             <div className="icon-label">{app.name}</div>
           </div>
         ))}
+        {externalDesktopLinks.map((link) => (
+          <div
+            key={link.id}
+            className="xp-desktop-icon"
+            onClick={() => window.open(link.url, '_blank', 'noopener,noreferrer')}
+          >
+            <div className="icon-image"><img src={link.icon} alt={link.name} /></div>
+            <div className="icon-label">{link.name}</div>
+          </div>
+        ))}
       </div>
 
       {apps.map((app) => {
@@ -345,6 +373,8 @@ const XpDesktop = ({ onShutdown }: XpDesktopProps = {}) => {
         const AppComponent = app.component;
         const componentProps = app.id === 'projects' 
           ? { onProjectClick: handleProjectClick }
+          : app.id === 'about'
+          ? { onOpenContact: () => openApp('contact') }
           : (app.componentProps || {});
           
         return (

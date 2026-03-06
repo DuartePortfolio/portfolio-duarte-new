@@ -9,7 +9,7 @@ import windowsLogo from './img/pngimg.com - windows_logos_PNG20.webp';
 type ViewType = 'login' | 'desktop';
 
 function App(): React.ReactElement {
-  const [currentView, setCurrentView] = useState<ViewType>('login');
+  const [currentView, setCurrentView] = useState<ViewType>('desktop');
   const { isMobile } = useResponsive();
 
   const handleLogin = () => {
