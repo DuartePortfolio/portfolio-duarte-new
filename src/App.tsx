@@ -5,6 +5,7 @@ import XpDesktop from './components/XpDesktop';
 import MobileLayout from './components/MobileLayout';
 import { useResponsive } from './hooks/useMediaQuery';
 import windowsLogo from './img/pngimg.com - windows_logos_PNG20.webp';
+import { Analytics } from '@vercel/analytics/react';
 
 type ViewType = 'login' | 'desktop';
 
@@ -31,6 +32,7 @@ function App(): React.ReactElement {
       ) : (
         isMobile ? <MobileLayout onShutdown={handleShutdown} /> : <XpDesktop onShutdown={handleShutdown} />
       )}
+      <Analytics />
     </div>
   );
 }
